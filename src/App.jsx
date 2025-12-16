@@ -85,20 +85,34 @@ const App = () => {
                 <div className=' flex w-full justify-around text-5xl font-semibold'>Available on your favourite devices</div>
 
                 <div className='flex grow pt-20 px-25 justify-between'>
-                    <div>
+                    <div className='flex flex-col gap-3 w-70 items-center'>
                         <img className='w-45 h-45' src={tv} alt='tv image'></img>
+                        <h2 className='text-2xl font-semibold mb-3'>TV</h2>
+                        <div className='flex flex-col items-center text-md text-[#FFFFFF99]'>
+                            <ul>Amazon Fire TV</ul>
+                            <ul>Android TV Devices</ul>
+                            <ul>Apple TV</ul>
+                            <ul>Chromecast</ul>
+                            <ul>LG TVs</ul>
+                            <ul>Roku</ul>
+                            <ul>Samsung</ul>
+                            <ul>Sky Q</ul>
+                        </div>
                     </div>
 
-                    <div>
+                    <div className='flex flex-col bg-amber-600 gap-3 w-70 items-center'>
                         <img className='w-32 h-32 mt-6' src={computer}></img>
+                        <h2>Computer</h2>
                     </div>
 
-                    <div>
+                    <div className='flex flex-col bg-amber-600 gap-3 w-70 items-center'>
                         <img className='w-30 h-30 mt-6' src={phone}></img>
+                        <h2>Mobile & Tablet</h2>
                     </div>
 
-                    <div>
+                    <div className='flex flex-col bg-amber-600 gap-3 w-70 items-center'>
                         <img className='w-25 h-25 mt-9' src={console}></img>
+                        <h2>Game Consoles</h2>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,9 @@
 import logo from './assets/images/logo.png';
 import landing from './assets/images/landing page image.png';
+import tv from './assets/images/smart-tv.png';
+import computer from'./assets/images/laptop.png';
+import phone from './assets/images/mobile.png';
+import console from './assets/images/console.png';
 
 const App = () => {
     return (
@@ -77,8 +81,26 @@ const App = () => {
 
             {/* landing page 3 */}
 
-            <div className='min-h-screen'>
+            <div className='min-h-screen p-13 flex flex-col'>
+                <div className=' flex w-full justify-around text-5xl font-semibold'>Available on your favourite devices</div>
 
+                <div className='flex grow pt-20 px-25 justify-between'>
+                    <div>
+                        <img className='w-45 h-45' src={tv} alt='tv image'></img>
+                    </div>
+
+                    <div>
+                        <img className='w-32 h-32 mt-6' src={computer}></img>
+                    </div>
+
+                    <div>
+                        <img className='w-30 h-30 mt-6' src={phone}></img>
+                    </div>
+
+                    <div>
+                        <img className='w-25 h-25 mt-9' src={console}></img>
+                    </div>
+                </div>
             </div>
         </div>
     )

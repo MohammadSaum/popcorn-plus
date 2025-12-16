@@ -4,6 +4,9 @@ import landing from './assets/images/landing page image.png';
 const App = () => {
     return (
         <div>
+
+            {/* landing page 1 */}
+
             <div className='min-h-screen flex flex-col w-full p-5'>
                 <div className='w-full flex justify-end px-4'>
                     <div className='flex border-[1.5px] rounded-md p-2 cursor-pointer hover:border-[#FFFFFF99] hover:text-[#FFFFFF99] transition duration-150'>LOG IN</div>
@@ -35,6 +38,8 @@ const App = () => {
                     
                 </div>
             </div>
+
+            {/* landing page 2 */}
 
             <div className='min-h-screen p-15'>
                 <div className='flex gap-10'>
@@ -68,6 +73,12 @@ const App = () => {
                 <div className='w-full mt-3 flex items-center justify-center'>
                     <button className='bg-[#1A86FF] w-90 flex p-2 rounded-md justify-center items-center cursor-pointer hover:bg-[#0072C6] active:scale-98 transition duration-150'>SIGN UP NOW</button>
                 </div>
+            </div>
+
+            {/* landing page 3 */}
+
+            <div className='min-h-screen'>
+
             </div>
         </div>
     )

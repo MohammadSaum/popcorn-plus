@@ -100,9 +100,15 @@ const App = () => {
                         </div>
                     </div>
 
-                    <div className='flex flex-col bg-amber-600 gap-3 w-70 items-center'>
+                    <div className='flex flex-col gap-5 w-70 items-center'>
                         <img className='w-32 h-32 mt-6' src={computer}></img>
-                        <h2>Computer</h2>
+                        <h2 className='text-2xl font-semibold pt-5'>Computer</h2>
+                        <div className='flex flex-col items-center text-[#FFFFFF99]'>
+                            <ul>Chrome OS</ul>
+                            <ul>MacOS</ul>
+                            <ul>Window PC</ul>
+
+                        </div>
                     </div>
 
                     <div className='flex flex-col bg-amber-600 gap-3 w-70 items-center'>

@@ -16,7 +16,7 @@ const App = () => {
                     <div className='flex border-[1.5px] rounded-md p-2 cursor-pointer hover:border-[#FFFFFF99] hover:text-[#FFFFFF99] transition duration-150'>LOG IN</div>
                 </div>
                 
-                <div className='h-150 w-190 flex flex-col grow justify-center gap-5 p-2'>
+                <div className='h-150 w-190 flex flex-col grow justify-center gap-5 mx-5'>
                     <img className='h-30 w-50' src={logo} alt='Disney-Plus-Logo'></img>
                     <span className='text-5xl font-bold w-130'>Stories you'd expect + Stories you wouldn't</span>
 
@@ -84,7 +84,7 @@ const App = () => {
             <div className='min-h-screen p-13 flex flex-col'>
                 <div className=' flex w-full justify-around text-5xl font-semibold'>Available on your favourite devices</div>
 
-                <div className='flex grow pt-20 px-25 justify-between'>
+                <div className='flex grow pt-20 px-5 justify-between'>
                     <div className='flex flex-col gap-3 w-70 items-center'>
                         <img className='w-45 h-45' src={tv} alt='tv image'></img>
                         <h2 className='text-2xl font-semibold mb-3'>TV</h2>
@@ -103,17 +103,21 @@ const App = () => {
                     <div className='flex flex-col gap-5 w-70 items-center'>
                         <img className='w-32 h-32 mt-6' src={computer}></img>
                         <h2 className='text-2xl font-semibold pt-5'>Computer</h2>
-                        <div className='flex flex-col items-center text-[#FFFFFF99]'>
+                        <div className='flex flex-col items-center text-[#FFFFFF99] pt-1'>
                             <ul>Chrome OS</ul>
                             <ul>MacOS</ul>
                             <ul>Window PC</ul>
-
                         </div>
                     </div>
 
-                    <div className='flex flex-col bg-amber-600 gap-3 w-70 items-center'>
+                    <div className='flex flex-col gap-3 w-70 items-center'>
                         <img className='w-30 h-30 mt-6' src={phone}></img>
-                        <h2>Mobile & Tablet</h2>
+                        <h2 className='text-2xl font-semibold mt-9'>Mobile & Tablet</h2>
+                        <div className='flex flex-col items-center text-[#FFFFFF99] pt-3'>
+                            <ul>Amazon Fire Tablets</ul>
+                            <ul>Android Phones & Tablets</ul>
+                            <ul>iPhone & iPad</ul>
+                        </div>
                     </div>
 
                     <div className='flex flex-col bg-amber-600 gap-3 w-70 items-center'>

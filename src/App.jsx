@@ -133,6 +133,10 @@ const App = () => {
                     </div>
                 </div>
             </div>
+
+            {/* landing page 4   */}
+            <div className='min-h-screen flex flex-col'>
+            </div>
         </div>
     )
 }

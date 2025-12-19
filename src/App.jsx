@@ -120,9 +120,16 @@ const App = () => {
                         </div>
                     </div>
 
-                    <div className='flex flex-col bg-amber-600 gap-3 w-70 items-center'>
+                    <div className='flex flex-col  gap-3 w-70 items-center'>
                         <img className='w-25 h-25 mt-9' src={console}></img>
-                        <h2>Game Consoles</h2>
+                        <h2 className='text-2xl font-semibold mt-11'>Game Consoles</h2>
+                        <div className='flex flex-col items-center text-[#FFFFFF99] mt-3'>
+                            <ul>PS4</ul>
+                            <ul>PS5</ul>
+                            <ul>Xbox One</ul>
+                            <ul>Xbox Series X</ul>
+                            <ul>Xbos Series S</ul>
+                        </div>
                     </div>
                 </div>
             </div>

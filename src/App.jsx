@@ -3,9 +3,28 @@ import landing from './assets/images/landing page image.png';
 import tv from './assets/images/smart-tv.png';
 import computer from'./assets/images/laptop.png';
 import phone from './assets/images/mobile.png';
-import console from './assets/images/console.png';
+import gameConsole from './assets/images/console.png';
+import { useState } from 'react';
 
 const App = () => {
+
+    const [activeId, setActiveId] = useState(null);
+
+    const FAQs = [{
+        id:1,
+        question: "What is Disney+?",
+        answer:"Disney+ is a streaming platform"
+    },
+    {
+        id:2,
+        question: "What can I watch on Disney+?",
+        answer: "everything"
+    }];
+
+
+    const expand = (id) => {
+        setActiveId(activeId === id ? null : id);
+    };
     return (
         <div>
 
@@ -121,7 +140,7 @@ const App = () => {
                     </div>
 
                     <div className='flex flex-col  gap-3 w-70 items-center'>
-                        <img className='w-25 h-25 mt-9' src={console}></img>
+                        <img className='w-25 h-25 mt-9' src={gameConsole}></img>
                         <h2 className='text-2xl font-semibold mt-11'>Game Consoles</h2>
                         <div className='flex flex-col items-center text-[#FFFFFF99] mt-3'>
                             <ul>PS4</ul>
@@ -135,7 +154,9 @@ const App = () => {
             </div>
 
             {/* landing page 4   */}
-            <div className='min-h-screen flex flex-col'>
+            <div className='min-h-screen flex flex-col px-15 py-3 gap-10'>
+                <div className='w-full text-5xl flex justify-center font-semibold'>Frequently Asked Questions</div>
+                
             </div>
         </div>
     )

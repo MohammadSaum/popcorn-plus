@@ -10,7 +10,12 @@ const App = () => {
 
     const [activeId, setActiveId] = useState(null);
 
-    const FAQs = [];
+    const FAQs = [{
+        id:1,
+        question: "What is Disney+?",
+        answer:"Disney+ is a streaming platform"
+    },
+    ];
 
 
     const expand = (id) => {

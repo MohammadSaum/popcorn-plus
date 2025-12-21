@@ -10,16 +10,7 @@ const App = () => {
 
     const [activeId, setActiveId] = useState(null);
 
-    const FAQs = [{
-        id:1,
-        question: "What is Disney+?",
-        answer:"Disney+ is a streaming platform"
-    },
-    {
-        id:2,
-        question: "What can I watch on Disney+?",
-        answer: "everything"
-    }];
+    const FAQs = [];
 
 
     const expand = (id) => {
@@ -157,6 +148,23 @@ const App = () => {
             <div className='min-h-screen flex flex-col px-15 py-3 gap-10'>
                 <div className='w-full text-5xl flex justify-center font-semibold'>Frequently Asked Questions</div>
                 
+                <div className='flex flex-col gap-5'>
+                    {FAQs.map((item) =>{
+                        return (
+                            <div key={item.id} className='flex flex-col'>
+                                <div className='w-full h-15 bg-[#13151D] flex justify-between px-5 items-center text-lg'>
+                                    <span>{item.question}</span>
+                                    <button className='text-4xl cursor-pointer' onClick={()=>expand(item.id)}>{activeId === item.id ? '-' : '+'}</button>
+                                </div>
+
+                                {activeId === item.id && (
+                                    <div className='bg-[#13151D] p-5 border-t border-black text-[#FFFFFF99]'>{item.answer}
+                                    </div>
+                                )}
+                            </div>
+                        );
+                    })}
+                </div>
             </div>
         </div>
     )

@@ -15,7 +15,11 @@ const App = () => {
         question: "What is Disney+?",
         answer:"Disney+ is a streaming platform"
     },
-    ];
+    {
+        id:2,
+        question: "What can I watch on Disney+?",
+        answer: "you can watch Disney+ over various devices like computer, TV, smartphones, gaming consoles."
+    }];
 
 
     const expand = (id) => {

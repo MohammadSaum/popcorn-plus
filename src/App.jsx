@@ -24,6 +24,11 @@ const App = () => {
         id:3,
         question: "How much does Disney+ cost?",
         answer: "Nothing for now, LOL."
+    },
+    {
+        id:4,
+        question: "What devices are supported?",
+        answer: "TVs, Laptop, Computer, Phones, Gaming consoles and many more."
     }];
 
 

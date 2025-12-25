@@ -29,6 +29,11 @@ const App = () => {
         id:4,
         question: "What devices are supported?",
         answer: "TVs, Laptop, Computer, Phones, Gaming consoles and many more."
+    },
+    {
+        id:5,
+        question:"Is there any commitments when signing up?",
+        answer:"For now, no."
     }];
 
 

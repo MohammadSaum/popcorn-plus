@@ -189,6 +189,9 @@ const App = () => {
                         );
                     })}
                 </div>
+
+                {/* Footer Section */}
+                <div className='flex grow'></div>
             </div>
         </div>
     )

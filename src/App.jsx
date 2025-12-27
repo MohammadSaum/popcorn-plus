@@ -191,7 +191,9 @@ const App = () => {
                 </div>
 
                 {/* Footer Section */}
-                <div className='flex grow'></div>
+                <div className='flex grow mt-25 p-2 '>
+                    <div className='flex w-full h-15 items-center justify-around'><img src={logo} className='h-12 w-20'></img></div>
+                </div>
             </div>
         </div>
     )

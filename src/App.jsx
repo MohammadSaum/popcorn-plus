@@ -172,7 +172,7 @@ const App = () => {
             <div className='min-h-screen flex flex-col px-15 py-3 gap-10'>
                 <div className='w-full text-5xl flex justify-center font-semibold'>Frequently Asked Questions</div>
                 
-                <div className='flex flex-col gap-5'>
+                <div className='flex flex-col gap-3'>
                     {FAQs.map((item) =>{
                         return (
                             <div key={item.id} className='flex flex-col'>

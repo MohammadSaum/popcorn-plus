@@ -195,10 +195,11 @@ const App = () => {
                     <div className='flex w-full h-15 items-center justify-around'><img src={logo} className='h-12 w-20'></img></div>
 
                     <div className='flex w-full pl-70 h-15 gap-10 items-center text-[#FFFFFF99] text-sm mb-5'>
+                        <ul>Supported Device</ul>
                         
                     </div>
 
-                   
+                    
                 </div>
             </div>
         </div>

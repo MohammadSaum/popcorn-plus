@@ -197,10 +197,9 @@ const App = () => {
                     <div className='flex w-full pl-70 h-15 gap-10 items-center text-[#FFFFFF99] text-sm mb-5'>
                         <ul>Supported Device</ul>
                         <ul>Help</ul>
-                        
+                        <ul>About Us</ul>
                     </div>
 
-                    
                 </div>
             </div>
         </div>

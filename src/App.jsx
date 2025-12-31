@@ -198,8 +198,9 @@ const App = () => {
                         <ul>Supported Device</ul>
                         <ul>Help</ul>
                         <ul>About Us</ul>
-                    </div>
+                        <ul>Terms of Use</ul>
 
+                    </div>
                 </div>
             </div>
         </div>

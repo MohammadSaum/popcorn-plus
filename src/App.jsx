@@ -199,8 +199,10 @@ const App = () => {
                         <ul>Help</ul>
                         <ul>About Us</ul>
                         <ul>Terms of Use</ul>
-
+                        <ul>Privacy Policy</ul>
+                        
                     </div>
+
                 </div>
             </div>
         </div>

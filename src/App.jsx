@@ -201,7 +201,7 @@ const App = () => {
                         <ul>Terms of Use</ul>
                         <ul>Privacy Policy</ul>
                         <ul>Cookie Policy</ul>
-                        
+                        <ul>FAQ</ul>
                     </div>
 
                     

@@ -202,9 +202,9 @@ const App = () => {
                         <ul>Privacy Policy</ul>
                         <ul>Cookie Policy</ul>
                         <ul>FAQ</ul>
+                        <ul>English</ul>
                     </div>
 
-                    
                 </div>
             </div>
         </div>

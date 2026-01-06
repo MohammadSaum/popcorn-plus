@@ -205,6 +205,9 @@ const App = () => {
                         <ul>English</ul>
                     </div>
 
+                    <div className='text-[#FFFFFF99] flex justify-around text-sm'>
+                       
+                    </div>
                 </div>
             </div>
         </div>

@@ -206,7 +206,7 @@ const App = () => {
                     </div>
 
                     <div className='text-[#FFFFFF99] flex justify-around text-sm'>
-                       
+                        © All Rights Reserved. Made by Mohammad Saum!
                     </div>
                 </div>
             </div>

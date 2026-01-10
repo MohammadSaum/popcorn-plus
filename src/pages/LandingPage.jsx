@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
 import logo from "../assets/images/logo.png";
 import landing from "../assets/images/landing page image.png";
 import tv from "../assets/images/smart-tv.png";
@@ -47,7 +48,9 @@ const landingPage = () => {
 
             <div className='min-h-screen flex flex-col w-full p-5'>
                 <div className='w-full flex justify-end px-4'>
-                    <div className='flex border-[1.5px] rounded-md p-2 cursor-pointer hover:border-[#FFFFFF99] hover:text-[#FFFFFF99] transition duration-150'>LOG IN</div>
+                    <Link to="/LoginPage"
+                        className='flex border-[1.5px] rounded-md p-2 cursor-pointer hover:border-[#FFFFFF99] hover:text-[#FFFFFF99] transition duration-150'>LOG IN
+                    </Link>
                 </div>
                 
                 <div className='h-150 w-190 flex flex-col grow justify-center gap-5 mx-5'>

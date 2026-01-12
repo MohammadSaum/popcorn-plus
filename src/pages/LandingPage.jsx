@@ -6,6 +6,7 @@ import tv from "../assets/images/smart-tv.png";
 import computer from "../assets/images/laptop.png";
 import phone from "../assets/images/mobile.png";
 import gameConsole from "../assets/images/console.png";
+import heroBg from "../assets/images/hero-bg.jpg";
 
 
 const landingPage = () => {
@@ -46,8 +47,21 @@ const landingPage = () => {
 
             {/* landing page 1 */}
 
-            <div className='min-h-screen flex flex-col w-full p-5'>
-                <div className='w-full flex justify-end px-4'>
+            <div className='relative min-h-screen flex flex-col w-full overflow-hidden'>
+                
+                <div
+                    className="absolute inset-0 bg-cover bg-no-repeat bg-right"
+                    style={{
+                        backgroundImage: `url(${heroBg})`
+                    }}
+                />
+
+                <div className="absolute inset-0 bg-linear-to-r 
+                    from-black via-black/80 to-transparent" />
+
+
+                <div className='relative z-10 min-h-screen flex flex-col p-5 text-white'>
+                    <div className='w-full flex justify-end px-4'>
                     <Link to="/LoginPage"
                         className='flex border-[1.5px] rounded-md p-2 cursor-pointer hover:border-[#FFFFFF99] hover:text-[#FFFFFF99] transition duration-150'>LOG IN
                     </Link>
@@ -77,6 +91,7 @@ const landingPage = () => {
                     <span className='text-[#FFFFFF99] text-xs p-2 -mt-9'>*Saving compared to 12 months of the mostly subscription price.</span>
 
                     
+                </div>
                 </div>
             </div>
 

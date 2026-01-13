@@ -9,6 +9,11 @@ const LoginPage = () => {
                     <img src={Logo} className='h-20 w-auto'></img>
                 </div>
 
+                <h2 className='text-[#E6E9F0] text-xl font-semibold mb-6 text-center'>
+                    Login with your email
+                </h2>
+                    
+               
             </div>
         </div>
     )

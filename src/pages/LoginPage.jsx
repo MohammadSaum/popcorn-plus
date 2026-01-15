@@ -13,7 +13,10 @@ const LoginPage = () => {
                     Login with your email
                 </h2>
                     
-               
+                <div className='flex flex-col gap-5'>
+
+                    
+                </div>
             </div>
         </div>
     )

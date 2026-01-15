@@ -24,6 +24,14 @@ const LoginPage = () => {
                         placeholder='Enter your email' />
                     </div>
 
+                    {/* Pass */}
+                    <div className=' flex flex-col gap-1'>
+                        <label className="text-md text-[#9AA4BF]">Password</label>
+
+                        <input className='bg-[#070B1A] text-[#E6E9F0] placeholder:text-[#6B7391] border border-[#121833]  rounded-md px-3 py-2 focus:outline-none focus:border-[#3B82F6] focus:ring-2 focus:ring-[#3B82F6]/40 transition' type='password' 
+                        placeholder='Enter your password'></input>
+                    </div>
+
                     
                 </div>
             </div>

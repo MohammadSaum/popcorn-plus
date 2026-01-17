@@ -32,6 +32,9 @@ const LoginPage = () => {
                         placeholder='Enter your password'></input>
                     </div>
 
+                    {/* button */}
+                        <button className='rounded-xl cursor-pointer  bg-[#3B82F6] hover:bg-[#2563EB] active:bg-[#1D4ED8] active:scale-95 text-white font-medium py-2.5 mt-4 transition'>Login</button>
+
                     
                 </div>
             </div>

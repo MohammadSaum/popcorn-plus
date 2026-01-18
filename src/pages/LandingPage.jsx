@@ -62,7 +62,7 @@ const landingPage = () => {
 
                 <div className='relative z-10 min-h-screen flex flex-col p-5 text-white'>
                     <div className='w-full flex justify-end px-4'>
-                    <Link to="/LoginPage"
+                    <Link to="/login"
                         className='flex border-[1.5px] rounded-md p-2 cursor-pointer hover:border-[#FFFFFF99] hover:text-[#FFFFFF99] transition duration-150'>LOG IN
                     </Link>
                 </div>
@@ -77,7 +77,7 @@ const landingPage = () => {
                             <span className='text-lg flex items-center justify-center text-[#FFFFFF99] h-5 border-l-2 pl-1'> Month</span>
                         </h2>
                         <span className='text-[#FFFFFF99] text-lg'>Subscription required.</span>
-                        <Link to="/SignupPage"
+                        <Link to="/signup"
                         className='bg-[#1A86FF] flex p-2 rounded-md justify-center items-center cursor-pointer hover:bg-[#0072C6] active:scale-98 transition duration-150'>SIGN UP NOW</Link>
                         </div>
 

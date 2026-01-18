@@ -77,7 +77,8 @@ const landingPage = () => {
                             <span className='text-lg flex items-center justify-center text-[#FFFFFF99] h-5 border-l-2 pl-1'> Month</span>
                         </h2>
                         <span className='text-[#FFFFFF99] text-lg'>Subscription required.</span>
-                        <button className='bg-[#1A86FF] flex p-2 rounded-md justify-center items-center cursor-pointer hover:bg-[#0072C6] active:scale-98 transition duration-150'>SIGN UP NOW</button>
+                        <Link to="/SignupPage"
+                        className='bg-[#1A86FF] flex p-2 rounded-md justify-center items-center cursor-pointer hover:bg-[#0072C6] active:scale-98 transition duration-150'>SIGN UP NOW</Link>
                         </div>
 
                         <div className='flex flex-col h-40 w-90 gap-2 p-2'>

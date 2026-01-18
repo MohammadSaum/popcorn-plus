@@ -9,9 +9,29 @@ const SignupPage = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
+    const [error, setError] = useState("")
+
     const handleSubmit = (e)=>{
         e.preventDefault();
-        console.log(name,email,password)
+
+        if(!name.trim()){
+            setError('Name is required.')
+            return
+        }
+
+        if(!email.trim()){
+            setError('Email is required.')
+            return
+        }
+
+        if(password.length<6){
+            setError("Password must be at least 6 characters");
+            return
+        }
+
+        setError('')
+
+        console.log("Signup Data: ", {name,email,password})
     }
     return (
             <div className='min-h-screen min-w-screen p-15 flex items-center justify-center'>
@@ -55,6 +75,12 @@ const SignupPage = () => {
                             placeholder='Enter your password'
                             onChange={(e)=>{setPassword(e.target.value)}}></input>
                         </div>
+
+                        {error && (
+                            <p className="text-red-500 text-sm text-center">
+                            {error}
+                            </p>
+                        )}
 
                         {/* button */}
                             <button className='rounded-xl cursor-pointer  bg-[#3B82F6] hover:bg-[#2563EB] active:bg-[#1D4ED8] active:scale-95 text-white font-medium py-2.5 mt-4 transition'

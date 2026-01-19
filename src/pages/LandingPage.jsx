@@ -128,7 +128,7 @@ const landingPage = () => {
                 </div>
             
                 <div className='w-full mt-3 flex items-center justify-center'>
-                    <button className='bg-[#1A86FF] w-90 flex p-2 rounded-md justify-center items-center cursor-pointer hover:bg-[#0072C6] active:scale-98 transition duration-150'>SIGN UP NOW</button>
+                    <Link to="/signup" className='bg-[#1A86FF] w-90 flex p-2 rounded-md justify-center items-center cursor-pointer hover:bg-[#0072C6] active:scale-98 transition duration-150'>SIGN UP NOW</Link>
                 </div>
             </div>
 

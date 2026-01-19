@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Logo from '../assets/images/logo.png'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { use } from 'react';
 
 const SignupPage = () => {
@@ -10,6 +10,13 @@ const SignupPage = () => {
     const [password, setPassword] = useState("")
 
     const [error, setError] = useState("")
+
+    const navigate = useNavigate()
+
+    const isFormValid =
+        name.trim() !== "" &&
+        email.trim() !== "" &&
+        password.length >= 6;
 
     const handleSubmit = (e)=>{
         e.preventDefault();
@@ -32,14 +39,18 @@ const SignupPage = () => {
         setError('')
 
         console.log("Signup Data: ", {name,email,password})
+
+        navigate("/login")
     }
     return (
             <div className='min-h-screen min-w-screen p-15 flex items-center justify-center'>
                 <form className="bg-[#0B1022] border border-[#0F1530] rounded-xl w-105 p-8 shadow-lg"
                     onSubmit={handleSubmit}>
+
+                    {/* logo */}
                     <div className='flex justify-center mb-6'>
-                    <img src={Logo} alt='logo' className='h-20 w-auto'></img>
-                </div>
+                        <img src={Logo} alt='logo' className='h-20 w-auto'></img>
+                    </div>
 
                 <h2 className='text-[#E6E9F0] text-xl font-semibold mb-6 text-center'>
                     Sign up
@@ -76,6 +87,7 @@ const SignupPage = () => {
                             onChange={(e)=>{setPassword(e.target.value)}}></input>
                         </div>
 
+                        {/* error */}
                         {error && (
                             <p className="text-red-500 text-sm text-center">
                             {error}
@@ -83,8 +95,16 @@ const SignupPage = () => {
                         )}
 
                         {/* button */}
-                            <button className='rounded-xl cursor-pointer  bg-[#3B82F6] hover:bg-[#2563EB] active:bg-[#1D4ED8] active:scale-95 text-white font-medium py-2.5 mt-4 transition'
-                            type='submit'>Sign Up</button>
+                            <button  type="submit"
+                                disabled={!isFormValid}
+                                className={`rounded-xl font-medium py-2.5 mt-4 transition
+                                    ${
+                                    isFormValid
+                                        ? "cursor-pointer bg-[#3B82F6] hover:bg-[#2563EB] active:bg-[#1D4ED8] active:scale-95 text-white"
+                                        : "cursor-not-allowed bg-[#3B82F6]/50 text-white/60"
+                                    }
+                                `}
+                            >Sign Up</button>
 
                         {/* login route */}
                             <p className="mt-6 text-sm text-gray-400 text-center">

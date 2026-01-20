@@ -1,9 +1,33 @@
+import { useState } from 'react'
 import Logo from '../assets/images/logo.png'
 
 const LoginPage = () => {
+
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const [error, setError] = useState("")
+
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+        if (!email.trim()){
+            setError("Email required.")
+            return
+        }
+
+        if (password.length<6){
+            setError("Password must contain atleast 6 characters.")
+            return
+        }
+        setError("")
+        console.log("Login data : ",{email,password})
+    }
+
     return (
         <div className='min-h-screen min-w-screen p-15 flex items-center justify-center'>
-            <div className='bg-[#0B1022] border border-[#0F1530] rounded-xl w-105 p-8 shadow-lg'>
+            <form className='bg-[#0B1022] border border-[#0F1530] rounded-xl w-105 p-8 shadow-lg'
+            onSubmit={handleSubmit}>
                 
                 <div className='flex justify-center mb-6'>
                     <img src={Logo} className='h-20 w-auto'></img>
@@ -21,7 +45,8 @@ const LoginPage = () => {
 
                         <input className='bg-[#070B1A] text-[#E6E9F0] placeholder:text-[#6B7391] border border-[#121833]  rounded-md px-3 py-2 focus:outline-none focus:border-[#3B82F6] focus:ring-2 focus:ring-[#3B82F6]/40 transition' 
                         type='email' 
-                        placeholder='Enter your email' />
+                        placeholder='Enter your email'
+                        onChange={(e)=>{setEmail(e.target.value)}}/>
                     </div>
 
                     {/* Pass */}
@@ -29,15 +54,22 @@ const LoginPage = () => {
                         <label className="text-md text-[#9AA4BF]">Password</label>
 
                         <input className='bg-[#070B1A] text-[#E6E9F0] placeholder:text-[#6B7391] border border-[#121833]  rounded-md px-3 py-2 focus:outline-none focus:border-[#3B82F6] focus:ring-2 focus:ring-[#3B82F6]/40 transition' type='password' 
-                        placeholder='Enter your password'></input>
+                        placeholder='Enter your password'
+                        onChange={(e)=>{setPassword(e.target.value)}}></input>
                     </div>
 
+                    {/* error */}
+                    <p className="text-red-500 text-sm text-center">
+                            {error}
+                            </p>
+
                     {/* button */}
-                        <button className='rounded-xl cursor-pointer  bg-[#3B82F6] hover:bg-[#2563EB] active:bg-[#1D4ED8] active:scale-95 text-white font-medium py-2.5 mt-4 transition'>Login</button>
+                        <button className='rounded-xl cursor-pointer  bg-[#3B82F6] hover:bg-[#2563EB] active:bg-[#1D4ED8] active:scale-95 text-white font-medium py-2.5 mt-4 transition'
+                        type='submit'>Login</button>
 
                     
                 </div>
-            </div>
+            </form>
         </div>
     )
 }

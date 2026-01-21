@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Logo from '../assets/images/logo.png'
+import { useNavigate } from 'react-router-dom'
 
 const LoginPage = () => {
 
@@ -7,6 +8,11 @@ const LoginPage = () => {
     const [password, setPassword] = useState("")
     const [error, setError] = useState("")
 
+    const navigate = useNavigate()
+
+    const isFormValid =
+        email.trim() !== "" &&
+        password.length >= 6
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -22,6 +28,7 @@ const LoginPage = () => {
         }
         setError("")
         console.log("Login data : ",{email,password})
+        navigate("/home")
     }
 
     return (
@@ -59,15 +66,21 @@ const LoginPage = () => {
                     </div>
 
                     {/* error */}
-                    <p className="text-red-500 text-sm text-center">
+                    {error && ( 
+                        <p className="text-red-500 text-sm text-center">
                             {error}
-                            </p>
+                        </p>)
+                    }
 
                     {/* button */}
-                        <button className='rounded-xl cursor-pointer  bg-[#3B82F6] hover:bg-[#2563EB] active:bg-[#1D4ED8] active:scale-95 text-white font-medium py-2.5 mt-4 transition'
-                        type='submit'>Login</button>
-
-                    
+                        <button 
+                            disabled={!isFormValid}
+                            className={`rounded-xl font-medium py-2.5 mt-4 transition 
+                                ${isFormValid ?
+                                    "cursor-pointer bg-[#3B82F6] hover:bg-[#2563EB] active:bg-[#1D4ED8] active:scale-95 text-white"
+                                    :"cursor-not-allowed bg-[#3B82F6]/50 text-white/60" }
+                                `}
+                            type='submit'>Login</button>   
                 </div>
             </form>
         </div>
@@ -75,3 +88,5 @@ const LoginPage = () => {
 }
 
 export default LoginPage
+
+// login logic done

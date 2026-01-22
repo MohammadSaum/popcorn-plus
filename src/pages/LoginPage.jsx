@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Logo from '../assets/images/logo.png'
 import { useNavigate } from 'react-router-dom'
 
-const LoginPage = () => {
+const LoginPage = ({setIsAuthenticated}) => {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -28,6 +28,9 @@ const LoginPage = () => {
         }
         setError("")
         console.log("Login data : ",{email,password})
+
+        localStorage.setItem("isAuthenticated","true")
+        setIsAuthenticated(true);
         navigate("/home")
     }
 
@@ -88,5 +91,3 @@ const LoginPage = () => {
 }
 
 export default LoginPage
-
-// login logic done

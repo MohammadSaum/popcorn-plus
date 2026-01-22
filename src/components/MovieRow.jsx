@@ -1,0 +1,33 @@
+import React from 'react'
+
+const MovieRow = ({title, movies}) => {
+    return (
+        <div className='mb-10'>
+            <h2 className='text-xl font-semibold mb-4'>
+                {title}
+            </h2>
+
+            <div className='flex gap-4 overflow-x-auto scrollbar-hide'>
+                {movies.map((movie) => {
+                    return (
+                        <div 
+                            key={movie.id}
+                            className='min-w-37.5 cursor-pointer'
+                            >
+                                <div className='w-40 h-60 rounded-lg overflow-hidden bg-gray-800'>
+                                    <img 
+                                        src={movie.poster} 
+                                        alt={movie.title}
+                                        className='w-full h-full object-cover transition-transform duration-300 hover:scale-110'/>
+                                </div>
+
+                                <p className='text-sm text-center mt-2 text-gray-300'>{movie.title}</p>
+                        </div>
+                    )
+                })}
+            </div>
+        </div>
+    )
+}
+
+export default MovieRow

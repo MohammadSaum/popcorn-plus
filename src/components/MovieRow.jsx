@@ -1,18 +1,20 @@
 import React from 'react'
 
-const MovieRow = ({title, movies}) => {
+const MovieRow = ({title, movies, onMovieClick}) => {
     return (
         <div className='mb-10'>
             <h2 className='text-xl font-semibold mb-4'>
                 {title}
             </h2>
 
-            <div className='flex gap-4 overflow-x-auto scrollbar-hide'>
+            <div className='relative'>
+                <div className='flex gap-4 overflow-x-auto scrollbar-hide pr-10'>
                 {movies.map((movie) => {
                     return (
                         <div 
                             key={movie.id}
                             className='min-w-37.5 cursor-pointer'
+                            onClick={()=>{onMovieClick(movie)}}
                             >
                                 <div className='w-40 h-60 rounded-lg overflow-hidden bg-gray-800'>
                                     <img 
@@ -25,6 +27,7 @@ const MovieRow = ({title, movies}) => {
                         </div>
                     )
                 })}
+            </div>
             </div>
         </div>
     )

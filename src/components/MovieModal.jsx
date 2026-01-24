@@ -1,8 +1,11 @@
     import { useEffect, useState } from "react";
+    import { useWatchlist } from "../context/WatchListContext";
 
     const MovieModal = ({ movie, onClose }) => {
     const [visible, setVisible] = useState(false);
     const [activeMovie, setActiveMovie] = useState(null);
+    const {addToWatchlist, removeFromWatchlist, isInWatchlist} = useWatchlist()
+    const inWatchlist = activeMovie && isInWatchlist(activeMovie.id)
 
     /* ---------------- ESC KEY ---------------- */
     useEffect(() => {
@@ -101,12 +104,14 @@
 
                 {/* Actions */}
                 <div className="flex gap-4 mt-auto pt-4">
-                <button className="bg-white text-black px-6 py-2.5 rounded-lg font-semibold hover:bg-gray-200 active:scale-95 transition">
+                <button className="bg-white text-black px-6 py-2.5 rounded-lg font-semibold hover:bg-gray-200 active:scale-95 transition cursor-pointer">
                     ▶ Play
                 </button>
 
-                <button className="border border-gray-500 px-6 py-2.5 rounded-lg text-white hover:border-white hover:bg-white/10 active:scale-95 transition">
-                    + Watchlist
+                <button 
+                    onClick={() => inWatchlist ? removeFromWatchlist(activeMovie.id) : addToWatchlist(activeMovie)}
+                    className="border border-gray-500 px-6 py-2.5 rounded-lg text-white hover:border-white hover:bg-white/10 active:scale-95 transition cursor-pointer">
+                    {inWatchlist ? "✓ In Watchlist" : "+ Watchlist"}
                 </button>
                 </div>
             </div>

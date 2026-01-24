@@ -1,6 +1,12 @@
 import React from 'react'
 
 const MovieRow = ({title, movies, onMovieClick}) => {
+    const moviesWithId = movies.map((movie) =>({
+        ...movie,
+        id: `${movie.title}-${movie.year}`,
+        
+    }))
+
     return (
         <div className='mb-10'>
             <h2 className='text-xl font-semibold mb-4'>
@@ -9,12 +15,13 @@ const MovieRow = ({title, movies, onMovieClick}) => {
 
             <div className='relative'>
                 <div className='flex gap-4 overflow-x-auto scrollbar-hide pr-10'>
-                {movies.map((movie) => {
+                {moviesWithId.map((movie) => {
                     return (
                         <div 
                             key={movie.id}
                             className='min-w-37.5 cursor-pointer'
-                            onClick={()=>{onMovieClick(movie)}}
+                            onClick={()=>{onMovieClick(movie)
+                            }}
                             >
                                 <div className='w-40 h-60 rounded-lg overflow-hidden bg-gray-800'>
                                     <img 

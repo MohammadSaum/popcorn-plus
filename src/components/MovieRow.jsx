@@ -8,8 +8,8 @@ const MovieRow = ({title, movies, onMovieClick}) => {
     }))
 
     return (
-        <div className='mb-10'>
-            <h2 className='text-xl font-semibold mb-4'>
+        <div className='mt-8 mb-10'>
+            <h2 className='text-xl font-semibold mb-3'>
                 {title}
             </h2>
 

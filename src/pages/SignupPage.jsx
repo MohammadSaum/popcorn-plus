@@ -43,7 +43,7 @@ const SignupPage = () => {
         navigate("/login")
     }
     return (
-            <div className='min-h-screen min-w-screen p-15 flex items-center justify-center'>
+            <div className='min-h-screen min-w-full p-15 flex items-center justify-center'>
                 <form className="bg-[#0B1022] border border-[#0F1530] rounded-xl w-105 p-8 shadow-lg"
                     onSubmit={handleSubmit}>
 

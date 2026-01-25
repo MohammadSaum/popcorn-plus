@@ -6,8 +6,8 @@ import { WatchlistProvider } from './context/WatchListContext.jsx';
 
 createRoot(document.getElementById('root')).render(
     <BrowserRouter>
-    <WatchlistProvider>
-        <App />
-    </WatchlistProvider>
+        <WatchlistProvider>
+            <App />
+        </WatchlistProvider>
     </BrowserRouter>
 )

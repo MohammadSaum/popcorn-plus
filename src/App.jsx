@@ -55,6 +55,12 @@ const App = () => {
                         </ProtectedRoute>
                     }
             />
+
+            <Route 
+                path="/watchlist" 
+                    element={<Watchlist />} 
+            />
+
         </Routes>
         </>
     )

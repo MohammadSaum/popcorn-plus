@@ -57,7 +57,9 @@ const landingPage = () => {
                 />
 
                 <div className="absolute inset-0 bg-linear-to-r 
-                    from-black via-black/80 to-transparent" />
+                    from-black/90 via-black/60 to-transparent" />
+
+                <div className='absolute bottom-0 left-0 w-full h-22 bg-linear-to-t from-[#0B1022]/70 to-transparent'/>
 
 
                 <div className='relative z-10 min-h-screen flex flex-col p-5 text-white'>
@@ -86,7 +88,7 @@ const landingPage = () => {
                             <span className='text-lg flex items-center justify-center text-[#FFFFFF99] h-5 border-l-2 pl-1'>Year</span>
                         </h2>
                         <span className='text-[#FFFFFF99] text-lg'>Save over 15%.* Subscription required.</span>
-                        <button className='bg-[#1A86FF] flex p-2 rounded-md justify-center items-center cursor-pointer hover:bg-[#0072C6] active:scale-98 transition duration-150'>SAVE ON 12 MONTHS</button>
+                        <Link to='/signup' className='bg-[#1A86FF] flex p-2 rounded-md justify-center items-center cursor-pointer hover:bg-[#0072C6] active:scale-98 transition duration-150'>SAVE ON 12 MONTHS</Link>
                         </div>
                     </div>
                     <span className='text-[#FFFFFF99] text-xs p-2 -mt-9'>*Saving compared to 12 months of the mostly subscription price.</span>

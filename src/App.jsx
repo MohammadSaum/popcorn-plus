@@ -18,12 +18,19 @@ const App = () => {
         setIsAuthenticated(false)
     }
 
+    const hideNavbar = 
+    location.pathname === "/" ||
+    location.pathname === "/login" ||
+    location.pathname === "/signup"
+
     return (
         <>
+        {!hideNavbar && (
         <Navbar 
             isAuthenticated = {isAuthenticated}
             onLogout={handleLogout}
         />
+        )}
         <Routes>
             <Route 
                 path ='/' 
@@ -72,3 +79,4 @@ const App = () => {
 }
 
 export default App
+

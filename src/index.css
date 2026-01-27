@@ -1,9 +1,29 @@
 @import "tailwindcss";
 
+@theme {
+  /* Define your colors here instead of JS */
+    --color-app-bg: #030712;
+    --color-app-surface: #111827;
+    --color-app-surfaceHover: #1f2937;
+    --color-app-text: #f9fafb;
+    --color-app-muted: #9ca3af;
+    --color-app-accent: #3b82f6;
+    --color-app-danger: #ef4444;
+}
 body {
-    background-color: #040714;
-    color: #f9f9f9;
+    
     font-family: Avenir-World, sans-serif; /* or generic sans-serif */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+* {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
 @keyframes scaleIn {

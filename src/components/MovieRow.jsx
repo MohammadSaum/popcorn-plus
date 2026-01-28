@@ -1,5 +1,3 @@
-import React from 'react'
-
 const MovieRow = ({title, movies, onMovieClick}) => {
     const moviesWithId = movies.map((movie) =>({
         ...movie,
@@ -30,7 +28,7 @@ const MovieRow = ({title, movies, onMovieClick}) => {
                                         className='w-full h-full object-cover transition-transform duration-300 hover:scale-110'/>
                                 </div>
 
-                                <p className='text-sm text-center mt-2 text-gray-300'>{movie.title}</p>
+                                <p className='text-sm text-center mt-2 text-app-muted'>{movie.title}</p>
                         </div>
                     )
                 })}

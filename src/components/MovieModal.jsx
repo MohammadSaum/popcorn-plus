@@ -62,9 +62,9 @@
 
         {/* ---------- MODAL ---------- */}
         <div
-            className={`relative text-white rounded-2xl max-w-2xl w-full mx-4 p-6 z-10
+            className={`relative rounded-2xl max-w-2xl w-full mx-4 p-6 z-10
             shadow-2xl
-            bg-linear-to-br from-[#0B1022] via-[#0E1430] to-[#090D1A]
+            bg-linear-to-br from-app-bg via-[#0E1430] to-[#090D1A]
             transition-all duration-200 ease-out
             ${visible ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}
         >
@@ -92,13 +92,13 @@
                 {activeMovie.title}
                 </h2>
 
-                <div className="flex items-center gap-3 text-xs text-gray-400 mb-3">
+                <div className="flex items-center gap-3 text-xs text-app-muted mb-3">
                 <span>{activeMovie.year}</span>
                 <span>•</span>
                 <span>⭐ {activeMovie.rating}</span>
                 </div>
 
-                <p className="text-gray-300 text-sm leading-relaxed mb-4">
+                <p className="text-app-muted text-sm leading-relaxed mb-4">
                 {activeMovie.description || "No description available."}
                 </p>
 
@@ -110,7 +110,7 @@
 
                 <button 
                     onClick={() => inWatchlist ? removeFromWatchlist(activeMovie.id) : addToWatchlist(activeMovie)}
-                    className="border border-gray-500 px-6 py-2.5 rounded-lg text-white hover:border-white hover:bg-white/10 active:scale-95 transition cursor-pointer">
+                    className="border border-gray-500 px-6 py-2.5 rounded-lg hover:border-white hover:bg-white/10 active:scale-95 transition cursor-pointer">
                     {inWatchlist ? "✓ In Watchlist" : "+ Watchlist"}
                 </button>
                 </div>

@@ -71,27 +71,27 @@ const landingPage = () => {
                 
                 <div className='h-150 w-190 flex flex-col grow justify-center gap-5 mx-5'>
                     <img className='h-30 w-50' src={logo} alt='Disney-Plus-Logo'></img>
-                    <span className='text-5xl font-bold w-130'>Stories you'd expect + Stories you wouldn't</span>
+                    <span className='text-5xl font-bold w-130 text-app-text'>Stories you'd expect + Stories you wouldn't</span>
 
                     <div className='flex gap-5 w-full'>
                         <div className='flex flex-col h-40 w-90 gap-2 p-2'>
                         <h2 className='text-4xl flex items-baseline gap-1'>$3.99 
-                            <span className='text-lg flex items-center justify-center text-[#FFFFFF99] h-5 border-l-2 pl-1'> Month</span>
+                            <span className='text-lg flex items-center justify-center text-app-muted h-5 border-l-2 pl-1'> Month</span>
                         </h2>
-                        <span className='text-[#FFFFFF99] text-lg'>Subscription required.</span>
+                        <span className='text-app-muted text-lg'>Subscription required.</span>
                         <Link to="/signup"
                         className='bg-[#1A86FF] flex p-2 rounded-md justify-center items-center cursor-pointer hover:bg-[#0072C6] active:scale-98 transition duration-150'>SIGN UP NOW</Link>
                         </div>
 
                         <div className='flex flex-col h-40 w-90 gap-2 p-2'>
                         <h2 className='text-4xl flex items-baseline gap-1'>$39.99 
-                            <span className='text-lg flex items-center justify-center text-[#FFFFFF99] h-5 border-l-2 pl-1'>Year</span>
+                            <span className='text-lg flex items-center justify-center text-app-muted h-5 border-l-2 pl-1'>Year</span>
                         </h2>
-                        <span className='text-[#FFFFFF99] text-lg'>Save over 15%.* Subscription required.</span>
+                        <span className='text-app-muted text-lg'>Save over 15%.* Subscription required.</span>
                         <Link to='/signup' className='bg-[#1A86FF] flex p-2 rounded-md justify-center items-center cursor-pointer hover:bg-[#0072C6] active:scale-98 transition duration-150'>SAVE ON 12 MONTHS</Link>
                         </div>
                     </div>
-                    <span className='text-[#FFFFFF99] text-xs p-2 -mt-9'>*Saving compared to 12 months of the mostly subscription price.</span>
+                    <span className='text-app-muted text-xs p-2 -mt-9'>*Saving compared to 12 months of the mostly subscription price.</span>
 
                     
                 </div>
@@ -107,8 +107,8 @@ const landingPage = () => {
                     </div>
 
                     <div className='pt-13'>
-                        <h2 className='text-5xl font-semibold mb-2'>Watch the way you want</h2>
-                        <div className='px-5 py-4  text-[#FFFFFF99] gap-2 flex flex-col w-130 text-lg'>
+                        <h2 className='text-5xl font-semibold mb-2 text-app-text'>Watch the way you want</h2>
+                        <div className='px-5 py-4  text-app-muted gap-2 flex flex-col w-130 text-lg'>
                         <li>
                             Host virutal movie nights with GroupWatch. Pause, rewind and react with up to six personal friends. To invite or be invited to join GroupWatch, supscription is required
                         </li>
@@ -130,20 +130,20 @@ const landingPage = () => {
                 </div>
             
                 <div className='w-full mt-3 flex items-center justify-center'>
-                    <Link to="/signup" className='bg-[#1A86FF] w-90 flex p-2 rounded-md justify-center items-center cursor-pointer hover:bg-[#0072C6] active:scale-98 transition duration-150'>SIGN UP NOW</Link>
+                    <Link to="/signup" className='bg-[#1A86FF] w-90 flex p-2 rounded-md justify-center items-center cursor-pointer hover:bg-[#0072C6] active:scale-98 transition duration-150 text-app-text'>SIGN UP NOW</Link>
                 </div>
             </div>
 
             {/* landing page 3 */}
 
             <div className='min-h-screen p-13 flex flex-col'>
-                <div className=' flex w-full justify-around text-5xl font-semibold'>Available on your favourite devices</div>
+                <div className=' flex w-full justify-around text-5xl font-semibold text-app-text'>Available on your favourite devices</div>
 
                 <div className='flex grow pt-20 px-5 justify-between'>
                     <div className='flex flex-col gap-3 w-70 items-center'>
                         <img className='w-45 h-45' src={tv} alt='tv image'></img>
-                        <h2 className='text-2xl font-semibold mb-3'>TV</h2>
-                        <div className='flex flex-col items-center text-md text-[#FFFFFF99]'>
+                        <h2 className='text-2xl font-semibold mb-3 text-app-text'>TV</h2>
+                        <div className='flex flex-col items-center text-md text-app-muted'>
                             <ul>Amazon Fire TV</ul>
                             <ul>Android TV Devices</ul>
                             <ul>Apple TV</ul>
@@ -157,8 +157,8 @@ const landingPage = () => {
 
                     <div className='flex flex-col gap-5 w-70 items-center'>
                         <img className='w-32 h-32 mt-6' src={computer}></img>
-                        <h2 className='text-2xl font-semibold pt-5'>Computer</h2>
-                        <div className='flex flex-col items-center text-[#FFFFFF99] pt-1'>
+                        <h2 className='text-2xl font-semibold pt-5 text-app-text'>Computer</h2>
+                        <div className='flex flex-col items-center text-app-muted pt-1'>
                             <ul>Chrome OS</ul>
                             <ul>MacOS</ul>
                             <ul>Window PC</ul>
@@ -167,8 +167,8 @@ const landingPage = () => {
 
                     <div className='flex flex-col gap-3 w-70 items-center'>
                         <img className='w-30 h-30 mt-6' src={phone}></img>
-                        <h2 className='text-2xl font-semibold mt-9'>Mobile & Tablet</h2>
-                        <div className='flex flex-col items-center text-[#FFFFFF99] pt-3'>
+                        <h2 className='text-2xl font-semibold mt-9 text-app-text'>Mobile & Tablet</h2>
+                        <div className='flex flex-col items-center text-app-muted pt-3'>
                             <ul>Amazon Fire Tablets</ul>
                             <ul>Android Phones & Tablets</ul>
                             <ul>iPhone & iPad</ul>
@@ -177,8 +177,8 @@ const landingPage = () => {
 
                     <div className='flex flex-col  gap-3 w-70 items-center'>
                         <img className='w-25 h-25 mt-9' src={gameConsole}></img>
-                        <h2 className='text-2xl font-semibold mt-11'>Game Consoles</h2>
-                        <div className='flex flex-col items-center text-[#FFFFFF99] mt-3'>
+                        <h2 className='text-2xl font-semibold mt-11 text-app-text'>Game Consoles</h2>
+                        <div className='flex flex-col items-center text-app-muted mt-3'>
                             <ul>PS4</ul>
                             <ul>PS5</ul>
                             <ul>Xbox One</ul>
@@ -191,7 +191,7 @@ const landingPage = () => {
 
             {/* landing page 4   */}
             <div className='min-h-screen flex flex-col px-15 py-3 gap-10'>
-                <div className='w-full text-5xl flex justify-center font-semibold'>Frequently Asked Questions</div>
+                <div className='w-full text-5xl flex justify-center font-semibold '>Frequently Asked Questions</div>
                 
                 <div className='flex flex-col gap-3'>
                     {FAQs.map((item) =>{
@@ -215,7 +215,7 @@ const landingPage = () => {
                 <div className='flex flex-col grow mt-25 p-2 '>
                     <div className='flex w-full h-15 items-center justify-around'><img src={logo} className='h-12 w-20'></img></div>
 
-                    <div className='flex w-full pl-70 h-15 gap-10 items-center text-[#FFFFFF99] text-sm mb-5'>
+                    <div className='flex w-full pl-70 h-15 gap-10 items-center text-app-muted text-sm mb-5'>
                         <ul>Supported Device</ul>
                         <ul>Help</ul>
                         <ul>About Us</ul>
@@ -226,7 +226,7 @@ const landingPage = () => {
                         <ul>English</ul>
                     </div>
 
-                    <div className='text-[#FFFFFF99] flex justify-around text-sm'>
+                    <div className='text-app-muted flex justify-around text-sm'>
                         © All Rights Reserved. Made by Mohammad Saum!
                     </div>
                 </div>

@@ -35,15 +35,15 @@ const LoginPage = ({setIsAuthenticated}) => {
     }
 
     return (
-        <div className='min-h-screen min-w-full p-15 flex items-center justify-center'>
-            <form className='bg-[#0B1022] border border-[#0F1530] rounded-xl w-105 p-8 shadow-lg'
+        <div className='min-h-screen min-w-full bg-app-bg p-15 flex items-center justify-center'>
+            <form className='bg-app-surface border border-[#0F1530] rounded-xl w-105 p-8 shadow-lg'
             onSubmit={handleSubmit}>
                 
                 <div className='flex justify-center mb-6'>
                     <img src={Logo} className='h-20 w-auto'></img>
                 </div>
 
-                <h2 className='text-[#E6E9F0] text-xl font-semibold mb-6 text-center'>
+                <h2 className='text-app-text text-xl font-semibold mb-6 text-center'>
                     Login with your email
                 </h2>
                     
@@ -70,7 +70,7 @@ const LoginPage = ({setIsAuthenticated}) => {
 
                     {/* error */}
                     {error && ( 
-                        <p className="text-red-500 text-sm text-center">
+                        <p className="text-app-danger text-sm text-center">
                             {error}
                         </p>)
                     }
@@ -80,7 +80,7 @@ const LoginPage = ({setIsAuthenticated}) => {
                             disabled={!isFormValid}
                             className={`rounded-xl font-medium py-2.5 mt-4 transition 
                                 ${isFormValid ?
-                                    "cursor-pointer bg-[#3B82F6] hover:bg-[#2563EB] active:bg-[#1D4ED8] active:scale-95 text-white"
+                                    "cursor-pointer bg-[#3B82F6] hover:bg-[#2563EB] active:bg-[#1D4ED8] active:scale-95 text-app-text"
                                     :"cursor-not-allowed bg-[#3B82F6]/50 text-white/60" }
                                 `}
                             type='submit'>Login</button>   

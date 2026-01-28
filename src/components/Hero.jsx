@@ -12,15 +12,15 @@ const Hero = () => {
             {/* gradient */}
             <div className='absolute inset-0 bg-linear-to-r from-black/90 via-black/60 to-transparent'/>
 
-            <div className='absolute bottom-0 left-0 w-full h-32 bg-linear-to-t from-[#0B1022] to-transparent'/>
+            <div className='absolute bottom-0 left-0 w-full h-32 bg-linear-to-t from-app-bg to-transparent'/>
 
             <div className='relative z-10 w-full'>
                 <div className='app-container'>
-                    <h1 className='text-4xl md:text-5xl font-bold text-white mb-4'>
+                    <h1 className='text-4xl md:text-5xl font-bold mb-4'>
                     Featured Movie
                 </h1>
 
-                <p className='text-gray-300 mb-6 leading-relaxed text-base md-text-lg'>
+                <p className='text-app-muted mb-6 leading-relaxed text-base md-text-lg'>
                     An epic story that captures the imagination and keeps you hooked.                
                 </p>
 
@@ -36,7 +36,7 @@ const Hero = () => {
                         Play
                     </button>
 
-                    <button className=' bg-gray-700/80 text-white
+                    <button className=' bg-gray-700/80
                         px-6 py-2.5 rounded-md
                         hover:bg-gray-600/90
                         active:scale-95

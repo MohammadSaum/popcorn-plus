@@ -43,8 +43,8 @@ const SignupPage = () => {
         navigate("/login")
     }
     return (
-            <div className='min-h-screen min-w-full p-15 flex items-center justify-center'>
-                <form className="bg-[#0B1022] border border-[#0F1530] rounded-xl w-105 p-8 shadow-lg"
+            <div className='min-h-screen bg-app-bg min-w-full p-15 flex items-center justify-center'>
+                <form className="bg-app-surface border border-[#0F1530] rounded-xl w-105 p-8 shadow-lg"
                     onSubmit={handleSubmit}>
 
                     {/* logo */}
@@ -52,7 +52,7 @@ const SignupPage = () => {
                         <img src={Logo} alt='logo' className='h-20 w-auto'></img>
                     </div>
 
-                <h2 className='text-[#E6E9F0] text-xl font-semibold mb-6 text-center'>
+                <h2 className='text-app-text text-xl font-semibold mb-6 text-center'>
                     Sign up
                 </h2>
                     
@@ -89,7 +89,7 @@ const SignupPage = () => {
 
                         {/* error */}
                         {error && (
-                            <p className="text-red-500 text-sm text-center">
+                            <p className="text-app-danger text-sm text-center">
                             {error}
                             </p>
                         )}

@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import LoginPage  from "./pages/LoginPage"
 import SignupPage from "./pages/SignupPage";
@@ -18,15 +18,18 @@ const App = () => {
         setIsAuthenticated(false)
     }
 
+    const location = useLocation()
+
     const hideNavbar = 
     location.pathname === "/" ||
     location.pathname === "/login" ||
     location.pathname === "/signup"
 
     return (
-        <>
+        <div className="min-h-screen bg-app-bg text-app-text">
         {!hideNavbar && (
         <Navbar 
+            key={isAuthenticated ? "auth" : "guest"}
             isAuthenticated = {isAuthenticated}
             onLogout={handleLogout}
         />
@@ -74,7 +77,7 @@ const App = () => {
             />
 
         </Routes>
-        </>
+        </div>
     )
 }
 

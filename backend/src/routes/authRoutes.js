@@ -1,5 +1,7 @@
 import express from "express";
 import User from "../models/user.js";
+import bcrypt from "bcryptjs";
+
 
 const router = express.Router();
 
@@ -15,8 +17,17 @@ router.post("/signup", async (req, res) => {
         });
         }
 
-        res.status(200).json({
-        message: "User does not exist, proceed with signup"
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password,salt);
+
+        await User.create({
+            name,
+            email,
+            password : hashedPassword
+        });
+
+        res.status(201).json({
+        message: "User created successfully"
         });
 
     } catch (error) {

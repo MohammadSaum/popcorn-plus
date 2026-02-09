@@ -3,8 +3,10 @@ import express from "express";
 import cors from "cors";
 import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoutes.js";
-import userRoutes from "./routes/userRoutes.js"
+import userRoutes from "./routes/userRoutes.js";
+import watchlistRoutes from "./routes/watchlistRoutes.js"
 
+// fix: register watchlist routes with correct ES module import <---------- to commit || only in server.js
 dotenv.config();
 
 // connect to MongoDB
@@ -17,6 +19,7 @@ app.use(cors());
 app.use(express.json());
 app.use("/api/auth",authRoutes)
 app.use("/api/users", userRoutes)
+app.use("/api/watchlist", watchlistRoutes);
 
 // test route
 app.get("/", (req, res) => {

@@ -4,36 +4,37 @@ import User from "../models/User.js"
 
 const router = express.Router();
 
-router.get("/",authMiddleware,async(req,res) => {
-    try{
-        res.json(req.user.watchlist)
-    } catch (error) {
-        res.status(500).json({message:"Failed to fetch watchlist"})
+router.get("/", authMiddleware, async (req, res) => {
+    const user = await User.findById(req.user.id);
+    res.json(user.watchlist);
+});
+
+
+    router.post("/", authMiddleware, async (req,    res) => {
+    const { movieId, title, poster } = req.body;
+
+    if (!movieId) {
+        return res.status(400).json({ message: "movieId required" });
     }
-})
 
-router.post("/",authMiddleware, async (req,res) => {
-    try {
-        const {movieId, title, poster} = req.body
+    const user = await User.findById(req.user.id);
 
-        const user = await User.findById(req.user._id)
+    const exists = user.watchlist.some(
+        (m) => m.movieId === movieId
+    );
 
-        const alreadyAdded = user.watchlist.some(
-            movie => movie.movieId === movieId
-        )
-
-        if (alreadyAdded) {
-            return res.status(400).json({message: "Movie already in watchlist"})
-        }
-
-        user.watchlist.push({ movieId, title, poster})
-        await user.save()
-
-        res.status(201).json(user.watchlist)
-    } catch (error) {
-        res.status(500).json({message:"Failed to add to watchlist"})
+    if (exists) {
+        return res.status(400).json({ message: "Movie already in watchlist" });
     }
-})
+
+    user.watchlist = user.watchlist.filter(item => item.movieId)
+
+    user.watchlist.push({ movieId, title, poster });
+    await user.save();
+
+    res.json(user.watchlist);
+    });
+
 
 router.delete("/:movieId", authMiddleware, async (req, res) => {
     try {

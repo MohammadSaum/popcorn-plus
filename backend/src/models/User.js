@@ -24,7 +24,9 @@ const userSchema = new mongoose.Schema(
 
         watchlist: [
             {
-                movieId: String,
+                movieId: {
+                    type: String,
+                    required: true},
                 title: String,
                 poster: String
             }

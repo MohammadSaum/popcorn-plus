@@ -6,7 +6,6 @@ import authRoutes from "./routes/authRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import watchlistRoutes from "./routes/watchlistRoutes.js"
 
-// fix: register watchlist routes with correct ES module import <---------- to commit || only in server.js
 dotenv.config();
 
 // connect to MongoDB

@@ -22,7 +22,7 @@ const Watchlist = () => {
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
                 {watchlist.map((movie)=>(
                     <div
-                        key={movie.id}
+                        key={movie.movieId}
                         className=" rounded-xl overflow-hidden shadow-lg transition transform hover:scale-[1.03] hover:shadow-xl"
                         >
                             <div className="overflow-hidden">
@@ -36,7 +36,7 @@ const Watchlist = () => {
                     <div className="p-4 flex flex-col gap-2">
                         <h3 className="text-sm font-medium line-clamp-2 text-app-text ">{movie.title}</h3>
 
-                        <button onClick={()=>removeFromWatchlist(movie.id)}
+                        <button onClick={()=>removeFromWatchlist(movie.movieId)}
                             className="mt-2 items-center gap-1 text-sm font-medium text-red-400 cursor-pointer px-3 py-1 rounded-full hover:bg-red-500/10 hover:text-red-300 active:scale-95 transition-all duration-200"
                             >Remove
                         </button>

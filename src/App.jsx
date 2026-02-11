@@ -10,11 +10,11 @@ import Watchlist from './pages/Watchlist'
 
 const App = () => {
 
-    const [isAuthenticated, setIsAuthenticated] = useState(
-        localStorage.getItem("isAuthenticated") === "true")
+    const token = localStorage.getItem("token")
+    const [isAuthenticated, setIsAuthenticated] = useState(!!token)
 
     const handleLogout = ()=>{
-        localStorage.removeItem("isAuthenticated")
+        localStorage.removeItem("token")
         setIsAuthenticated(false)
     }
 

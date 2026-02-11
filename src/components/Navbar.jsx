@@ -9,6 +9,7 @@ const Navbar = ({ isAuthenticated, onLogout }) => {
 
     const handleLogout = () => {
         onLogout()
+        localStorage.removeItem(token)
         navigate('/')
     }
 

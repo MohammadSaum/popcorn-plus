@@ -1,7 +1,7 @@
 const MovieRow = ({title, movies, onMovieClick}) => {
     const moviesWithId = movies.map((movie) =>({
         ...movie,
-        id: `${movie.title}-${movie.year}`,
+        id: movie.id || `${movie.title}-${index}`
         
     }))
 

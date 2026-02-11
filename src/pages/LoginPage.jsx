@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Logo from '../assets/images/logo.png'
 import { useNavigate } from 'react-router-dom'
+import { apiRequest } from '../utils/api'
 
 const LoginPage = ({setIsAuthenticated}) => {
 
@@ -14,7 +15,7 @@ const LoginPage = ({setIsAuthenticated}) => {
         email.trim() !== "" &&
         password.length >= 6
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
 
         if (!email.trim()){
@@ -26,12 +27,22 @@ const LoginPage = ({setIsAuthenticated}) => {
             setError("Password must contain atleast 6 characters.")
             return
         }
-        setError("")
-        console.log("Login data : ",{email,password})
 
-        localStorage.setItem("isAuthenticated","true")
-        setIsAuthenticated(true);
-        navigate("/home")
+        try{
+            setError("")
+
+            const data = await apiRequest("/auth/login",{
+                method: "POST",
+                body: JSON.stringify({email,password})
+            })
+
+            localStorage.setItem("token", data.token)
+
+            setIsAuthenticated(true)
+            navigate("/home")
+        } catch (err) {
+            setError(err.message || "Login failed")
+        }
     }
 
     return (

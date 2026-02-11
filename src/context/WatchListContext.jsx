@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import { apiRequest } from "../utils/api";
 
 const WatchlistContext = createContext();
 
@@ -10,23 +11,42 @@ export const WatchlistProvider = ({ children }) => {
 
     // persist
     useEffect(() => {
-        localStorage.setItem("watchlist", JSON.stringify(watchlist));
-    }, [watchlist]);
+        apiRequest("/watchlist")
+            .then(setWatchlist)
+            .catch((err) => { console.warn("Failed to load watchlist:", err.message)})
+    }, []);
 
-    const addToWatchlist = (movie) => {
-        setWatchlist((prev) => {
-        const exists = prev.some((m) => m.id === movie.id);
-        if (exists) return prev;
-        return [...prev, movie];
+    const addToWatchlist = async (movie) => {
+        if(!movie.id) {
+            console.error("Movie ID missing:",movie)
+            return
+        }
+        try {
+            const updated = await apiRequest("/watchlist", {
+            method: "POST",
+            body: JSON.stringify({
+                movieId: movie.id.toString(),
+                title: movie.title,
+                poster: movie.poster
+            }),
         });
+        
+        setWatchlist(updated);
+        } catch (error) {
+            console.warn(error.message)
+        }
     };
 
-    const removeFromWatchlist = (id) => {
-        setWatchlist((prev) => prev.filter((m) => m.id !== id));
+    const removeFromWatchlist = async (movieId) => {
+        const updated = await apiRequest(`/watchlist/${movieId}`, {
+            method: "DELETE",
+        });
+        setWatchlist(updated);
     };
+
 
     const isInWatchlist = (id) => {
-        return watchlist.some((m) => m.id === id);
+        return watchlist.some((m) => m.movieId === id);
     };
 
     return (

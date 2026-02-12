@@ -46,7 +46,7 @@ export const WatchlistProvider = ({ children }) => {
 
 
     const isInWatchlist = (id) => {
-        return watchlist.some((m) => m.movieId === id);
+        return watchlist.some((m) => String(m.movieId) === String(id));
     };
 
     return (

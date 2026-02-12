@@ -1,13 +1,16 @@
-    import { useEffect, useState } from "react";
-    import { useWatchlist } from "../context/WatchListContext";
+import { useEffect, useState } from "react";
+import { useWatchlist } from "../context/WatchListContext";
 
-    const MovieModal = ({ movie, onClose }) => {
+const MovieModal = ({ movie, onClose }) => {
     const [visible, setVisible] = useState(false);
     const [activeMovie, setActiveMovie] = useState(null);
-    const {addToWatchlist, removeFromWatchlist, isInWatchlist} = useWatchlist()
-    const inWatchlist = activeMovie && isInWatchlist(activeMovie.id)
 
-    /* ---------------- ESC KEY ---------------- */
+    const { addToWatchlist, removeFromWatchlist, isInWatchlist } =
+        useWatchlist();
+
+    const inWatchlist = activeMovie && isInWatchlist(activeMovie.id);
+
+    /* ESC */
     useEffect(() => {
         if (!visible) return;
 
@@ -19,23 +22,16 @@
         return () => window.removeEventListener("keydown", handleEsc);
     }, [visible, onClose]);
 
-    /* ---------------- SCROLL LOCK ---------------- */
+    /* Scroll lock */
     useEffect(() => {
-        if (visible) {
-        document.body.style.overflow = "hidden";
-        } else {
-        document.body.style.overflow = "auto";
-        }
-
-        return () => {
-        document.body.style.overflow = "auto";
-        };
+        document.body.style.overflow = visible ? "hidden" : "auto";
+        return () => (document.body.style.overflow = "auto");
     }, [visible]);
 
-    /* ---------------- VISIBILITY + DATA SNAPSHOT ---------------- */
+    /* Animation */
     useEffect(() => {
         if (movie) {
-        setActiveMovie(movie);     // keep data for exit animation
+        setActiveMovie(movie);
         setVisible(true);
         } else {
         const timeout = setTimeout(() => {
@@ -47,38 +43,39 @@
         }
     }, [movie]);
 
-    /* ---------------- UNMOUNT SAFETY ---------------- */
     if (!activeMovie && !visible) return null;
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center">
-        {/* ---------- OVERLAY ---------- */}
+        <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
+
+        {/* Overlay */}
         <div
-            className={`absolute inset-0 bg-black/70 backdrop-blur-sm
-            transition-opacity duration-200
-            ${visible ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
+            className={`absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity duration-300 ${
+            visible ? "opacity-100" : "opacity-0 pointer-events-none"
+            }`}
             onClick={onClose}
         />
 
-        {/* ---------- MODAL ---------- */}
+        {/* Modal */}
         <div
-            className={`relative rounded-2xl max-w-2xl w-full mx-4 p-6 z-10
-            shadow-2xl
+            className={`relative max-w-3xl w-full rounded-3xl overflow-hidden
             bg-linear-to-br from-app-bg via-[#0E1430] to-[#090D1A]
-            transition-all duration-200 ease-out
+            shadow-[0_0_40px_rgba(0,0,0,0.6)]
+            transition-all duration-300 ease-out
             ${visible ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}
         >
-            {/* Close button */}
+            {/* Close Button */}
             <button
             onClick={onClose}
-            className="absolute top-4 right-4 text-gray-400 hover:text-white transition"
+            className="absolute top-4 right-4 text-gray-400 hover:text-white transition text-lg"
             >
             ✕
             </button>
 
-            <div className="flex gap-6">
+            <div className="flex flex-col md:flex-row gap-6 p-6 md:p-8">
+
             {/* Poster */}
-            <div className="w-38 h-57 shrink-0 rounded-xl overflow-hidden shadow-lg bg-gray-800">
+            <div className="w-full md:w-48 h-64 md:h-72 rounded-2xl overflow-hidden shadow-xl bg-gray-800 shrink-0">
                 <img
                 src={activeMovie.poster}
                 alt={activeMovie.title}
@@ -87,31 +84,49 @@
             </div>
 
             {/* Details */}
-            <div className="flex flex-col">
-                <h2 className="text-2xl font-semibold mb-1">
+            <div className="flex flex-col flex-1">
+
+                <h2 className="text-3xl font-bold mb-2 tracking-tight">
                 {activeMovie.title}
                 </h2>
 
-                <div className="flex items-center gap-3 text-xs text-app-muted mb-3">
-                <span>{activeMovie.year}</span>
+                <div className="flex items-center gap-3 text-xs text-app-muted mb-4">
+                <span>{activeMovie.year || "2024"}</span>
                 <span>•</span>
-                <span>⭐ {activeMovie.rating}</span>
+                <span>⭐ {activeMovie.rating || "8.5"}</span>
                 </div>
 
-                <p className="text-app-muted text-sm leading-relaxed mb-4">
-                {activeMovie.description || "No description available."}
+                <p className="text-app-muted text-sm leading-relaxed mb-6 max-w-lg">
+                {activeMovie.description ||
+                    "An epic cinematic experience filled with drama, action and unforgettable moments."}
                 </p>
 
-                {/* Actions */}
-                <div className="flex gap-4 mt-auto pt-4">
-                <button className="bg-white text-black px-6 py-2.5 rounded-lg font-semibold hover:bg-gray-200 active:scale-95 transition cursor-pointer">
+                {/* Buttons */}
+                <div className="flex gap-4 mt-auto">
+
+                {/* Play */}
+                <button
+                    className="flex items-center gap-2 bg-white text-black px-6 py-2.5 rounded-xl font-semibold
+                    hover:bg-gray-200 active:scale-95 transition shadow-md"
+                >
                     ▶ Play
                 </button>
 
-                <button 
-                    onClick={() => inWatchlist ? removeFromWatchlist(activeMovie.id) : addToWatchlist(activeMovie)}
-                    className="border border-gray-500 px-6 py-2.5 rounded-lg hover:border-white hover:bg-white/10 active:scale-95 transition cursor-pointer">
-                    {inWatchlist ? "✓ In Watchlist" : "+ Watchlist"}
+                {/* Watchlist */}
+                <button
+                    onClick={() =>
+                    inWatchlist
+                        ? removeFromWatchlist(activeMovie.id)
+                        : addToWatchlist(activeMovie)
+                    }
+                    className={`px-6 py-2.5 rounded-xl font-medium transition-all duration-200 active:scale-95
+                    ${
+                        inWatchlist
+                        ? "bg-green-600 hover:bg-green-500 text-white shadow-green-500/30 shadow-md"
+                        : "border border-gray-500 hover:border-white hover:bg-white/10"
+                    }`}
+                >
+                    {inWatchlist ? "✓ Added" : "+ Watchlist"}
                 </button>
                 </div>
             </div>
@@ -119,6 +134,6 @@
         </div>
         </div>
     );
-    };
+};
 
-    export default MovieModal;
+export default MovieModal;

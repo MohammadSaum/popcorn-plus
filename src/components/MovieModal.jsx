@@ -4,11 +4,29 @@ import { useWatchlist } from "../context/WatchListContext";
 const MovieModal = ({ movie, onClose }) => {
     const [visible, setVisible] = useState(false);
     const [activeMovie, setActiveMovie] = useState(null);
+    const [loading, setLoading] = useState(false)
 
     const { addToWatchlist, removeFromWatchlist, isInWatchlist } =
         useWatchlist();
 
     const inWatchlist = activeMovie && isInWatchlist(activeMovie.id);
+
+    const handleWatchlistToggle = async () => {
+        if(!activeMovie) return
+        try {
+            setLoading(true)
+
+            if(inWatchlist){
+                await removeFromWatchlist(activeMovie.id)
+            } else {
+                await addToWatchlist(activeMovie)
+            }
+        } catch (err) {
+            console.warn(err.message)
+        } finally {
+            setLoading(false)
+        }
+    }
 
     /* ESC */
     useEffect(() => {
@@ -114,11 +132,8 @@ const MovieModal = ({ movie, onClose }) => {
 
                 {/* Watchlist */}
                 <button
-                    onClick={() =>
-                    inWatchlist
-                        ? removeFromWatchlist(activeMovie.id)
-                        : addToWatchlist(activeMovie)
-                    }
+                    onClick={handleWatchlistToggle}
+                    disanled = {loading}
                     className={`px-6 py-2.5 rounded-xl font-medium transition-all duration-200 active:scale-95
                     ${
                         inWatchlist

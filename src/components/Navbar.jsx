@@ -9,25 +9,22 @@ const Navbar = ({ isAuthenticated, onLogout }) => {
 
     const handleLogout = () => {
         onLogout()
-        localStorage.removeItem(token)
+        localStorage.removeItem("token")
         navigate('/')
     }
 
     const isActive = (path) => location.pathname === path
 
     return (
-        <nav className={`top-0 w-full z-50 transition-transform duration-400 px-6
-            ${isHome
-                ?" fixed bg-linear-to-b from-app-bg to-transparent pb-10 pt-4"
-                :"bg-app-bg border-b border-app-surface py-4"
-            }`}>
-            <div className='app-container py-3 flex justify-between items-center '>
+        <nav className="fixed top-0 left-0 w-full z-50">
+            <div className='absolute inset-0 h-24 bg-linear-to-b from-black/80 via-black/40  to-transparent pointer-events-none'/>
+            <div className='relative px-10 h-16 flex justify-between items-center '>
 
-                <Link to='/home' className='flex items-center group'>
-                    <img src={logo} alt='Disney+' className='h-11 w-auto transition-transform duration-300 group-hover:scale-105' />
+                <Link to='/home' className='flex items-center'>
+                    <img src={logo} alt='Disney+' className='h-11 w-auto hover:opacity-90 transition-opacity ' />
                 </Link>
             
-                <div className='flex gap-8 items-center'>
+                <div className='flex gap-8 items-center text-sm font-medium'>
                     <NavItem to='/home' active={isActive("/home")}>
                         Home
                     </NavItem>
@@ -38,7 +35,7 @@ const Navbar = ({ isAuthenticated, onLogout }) => {
                     {isAuthenticated && (
                         <button 
                             onClick={handleLogout}
-                            className='ml-2 px-4 py-2 rounded-full text-sm font-medium text-app-text bg-red-500/90 hover:bg-app-danger active:scale-95 transition-all duration-200 shadow-md hover:shadow-red-500/30 cursor-pointer'
+                            className='ml-2 px-5 py-2 rounded-md text-sm font-semibold bg-red-600 hover:bg-red-500 transition-colors duration-200 cursor-pointer'
                         >
                             Logout
                         </button>
@@ -53,9 +50,11 @@ const NavItem = ({to,children,active}) => {
     return (
         <Link
             to={to}
-            className='relative text-sm font-medium transition-colors duration-300 cursor-pointer'>
-                <span className={active ? "text-app-text" : "text-app-muted hover:text-app-text"}>{children}</span>
-                <span className={`absolute left-0 -buttom-1 h-0.5 w-full bg-blue-500 rounded-full transform origin-left transition-transform duration-300 ${active?"scale-x-100" : "scale-x-0 hover:scale-x-100"}`}/>
+            className="relative group text-gray-300 hover:text-white transition-colors duration-200"> {children}
+
+                <span className={`absolute left-0 -bottom-1 h-0.5 w-full bg-blue-500 rounded-full transform origin-left transition-transform duration-200
+                    ${active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`}/>
+                
             </Link>
     )
 }

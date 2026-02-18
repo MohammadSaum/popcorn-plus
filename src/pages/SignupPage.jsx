@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import Logo from '../assets/images/logo.png'
 import { Link, useNavigate } from "react-router-dom";
-import { use } from 'react';
+import { apiRequest } from '../utils/api';
 
 const SignupPage = () => {
 
+    const [loading, setLoading] = useState(false)
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -18,9 +19,10 @@ const SignupPage = () => {
         email.trim() !== "" &&
         password.length >= 6;
 
-    const handleSubmit = (e)=>{
+    const handleSubmit = async (e)=>{
         e.preventDefault();
 
+        if (loading) return
         if(!name.trim()){
             setError('Name is required.')
             return
@@ -36,11 +38,22 @@ const SignupPage = () => {
             return
         }
 
-        setError('')
+        try{
+            setLoading(true)
+            setError('')
 
-        console.log("Signup Data: ", {name,email,password})
+            await apiRequest("/auth/signup", {
+                method: "POST",
+                body: JSON.stringify({ name, email, password})
+            })
 
-        navigate("/login")
+            navigate("/login")
+
+        } catch (err) {
+            setError(err.message || "Signup failed")
+        } finally {
+            setLoading(false)
+        }
     }
     return (
             <div className='min-h-screen bg-app-bg min-w-full p-15 flex items-center justify-center'>
@@ -96,15 +109,24 @@ const SignupPage = () => {
 
                         {/* button */}
                             <button  type="submit"
-                                disabled={!isFormValid}
-                                className={`rounded-xl font-medium py-2.5 mt-4 transition
+                                disabled={!isFormValid || loading}
+                                className={`rounded-xl font-medium py-2.5 mt-4 transition flex justify-center items-center gap-2 min-h-11
                                     ${
-                                    isFormValid
+                                    (isFormValid || loading)
                                         ? "cursor-pointer bg-[#3B82F6] hover:bg-[#2563EB] active:bg-[#1D4ED8] active:scale-95 text-white"
                                         : "cursor-not-allowed bg-[#3B82F6]/50 text-white/60"
                                     }
                                 `}
-                            >Sign Up</button>
+                            >
+                                {loading ? (
+                                    <>
+                                        <div className='w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin'></div>
+                                            Creating account...
+                                    </>
+                                ) : (
+                                    "Sign Up"
+                                )}
+                            </button>
 
                         {/* login route */}
                             <p className="mt-6 text-sm text-gray-400 text-center">

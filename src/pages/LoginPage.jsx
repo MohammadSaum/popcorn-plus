@@ -5,6 +5,7 @@ import { apiRequest } from '../utils/api'
 
 const LoginPage = ({setIsAuthenticated}) => {
 
+    const [loading, setLoading] = useState(false)
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [error, setError] = useState("")
@@ -17,6 +18,8 @@ const LoginPage = ({setIsAuthenticated}) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+
+        if (loading) return
 
         if (!email.trim()){
             setError("Email required.")
@@ -42,6 +45,8 @@ const LoginPage = ({setIsAuthenticated}) => {
             navigate("/home")
         } catch (err) {
             setError(err.message || "Login failed")
+        } finally {
+            setLoading(false)
         }
     }
 
@@ -88,13 +93,17 @@ const LoginPage = ({setIsAuthenticated}) => {
 
                     {/* button */}
                         <button 
-                            disabled={!isFormValid}
-                            className={`rounded-xl font-medium py-2.5 mt-4 transition 
-                                ${isFormValid ?
+                            disabled={!isFormValid || loading}
+                            className={`rounded-xl font-medium py-2.5 mt-4 transition flex justify-center items-center gap-2 
+                                ${(isFormValid || loading) ?
                                     "cursor-pointer bg-[#3B82F6] hover:bg-[#2563EB] active:bg-[#1D4ED8] active:scale-95 text-app-text"
-                                    :"cursor-not-allowed bg-[#3B82F6]/50 text-white/60" }
+                                    : "cursor-not-allowed bg-[#3B82F6]/50 text-white/60"}
                                 `}
-                            type='submit'>Login</button>   
+                            type='submit'>{loading ? (
+                                <>
+                                    <div className='w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin'>Loggin in...</div>
+                                </>
+                            ) : "Login"}</button>   
                 </div>
             </form>
         </div>

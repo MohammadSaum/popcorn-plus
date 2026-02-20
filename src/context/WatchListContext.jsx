@@ -17,32 +17,48 @@ export const WatchlistProvider = ({ children }) => {
     }, []);
 
     const addToWatchlist = async (movie) => {
-        if(!movie.id) {
-            console.error("Movie ID missing:",movie)
-            return
-        }
-        try {
-            const updated = await apiRequest("/watchlist", {
-            method: "POST",
-            body: JSON.stringify({
-                movieId: movie.id.toString(),
-                title: movie.title,
-                poster: movie.poster
-            }),
-        });
-        
-        setWatchlist(updated);
-        } catch (error) {
-            console.warn(error.message)
-        }
+    const optimisticMovie = {
+        movieId: String(movie.id),
+        title: movie.title,
+        poster: movie.poster
     };
 
-    const removeFromWatchlist = async (movieId) => {
-        const updated = await apiRequest(`/watchlist/${movieId}`, {
-            method: "DELETE",
+    // 1️⃣ Update UI instantly
+    setWatchlist(prev => [...prev, optimisticMovie]);
+
+    try {
+        // 2️⃣ Sync backend
+        await apiRequest("/watchlist", {
+            method: "POST",
+            body: JSON.stringify(optimisticMovie)
         });
-        setWatchlist(updated);
-    };
+    } catch (error) {
+        console.warn(error.message);
+
+        // 3️⃣ Rollback if failed
+        setWatchlist(prev =>
+            prev.filter(m => m.movieId !== optimisticMovie.movieId)
+        );
+    }
+};
+
+
+    const removeFromWatchlist = async (movieId) => {
+
+    // Optimistic remove
+    setWatchlist(prev =>
+        prev.filter(m => m.movieId !== String(movieId))
+    );
+
+    try {
+        await apiRequest(`/watchlist/${movieId}`, {
+            method: "DELETE"
+        });
+    } catch (error) {
+        console.warn(error.message);
+    }
+};
+
 
 
     const isInWatchlist = (id) => {

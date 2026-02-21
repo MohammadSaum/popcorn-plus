@@ -5,8 +5,10 @@ const BASE_URL = "https://api.themoviedb.org/3";
 const API_KEY = process.env.TMDB_API_KEY;
 
 const fetchFromTMDB = async (endpoint) => {
+  const separator = endpoint.includes("?") ? "&" : "?";
+
   const response = await fetch(
-    `${BASE_URL}${endpoint}?api_key=${API_KEY}`
+    `${BASE_URL}${endpoint}${separator}api_key=${API_KEY}`
   );
 
   if (!response.ok) {
@@ -16,36 +18,39 @@ const fetchFromTMDB = async (endpoint) => {
   return await response.json();
 };
 
-router.get("/trending", async (req, res) => {
-  try {
-    console.log("Fetching trending from TMDB...");
-    const data = await fetchFromTMDB("/trending/movie/week");
-    console.log("TMDB response received");
-    res.json(data.results);
-  } catch (error) {
-    console.log("TMDB ERROR:", error);
-    res.status(500).json({ message: "Failed to fetch trending movies" });
-  }
-});
 
+/* ========== STANDARD MOVIE LISTS ========== */
+
+router.get("/trending", async (req, res) => {
+  const data = await fetchFromTMDB("/trending/movie/week");
+  res.json(data.results);
+});
 
 router.get("/popular", async (req, res) => {
-    try {
-        const data = await fetchFromTMDB("/movie/popular");
-        res.json(data.results);
-    } catch {
-        res.status(500).json({ message: "Failed to fetch popular movies" });
-    }
+  const data = await fetchFromTMDB("/movie/popular");
+  res.json(data.results);
 });
 
-router.get("/upcoming", async (req, res) => {
-    try {
-        const data = await fetchFromTMDB("/movie/upcoming");
-        res.json(data.results);
-    } catch {
-        res.status(500).json({ message: "Failed to fetch upcoming movies" });
-    }
+router.get("/top-rated", async (req, res) => {
+  const data = await fetchFromTMDB("/movie/top_rated");
+  res.json(data.results);
 });
+
+router.get("/action", async (req, res) => {
+  const data = await fetchFromTMDB("/discover/movie?with_genres=28");
+  res.json(data.results);
+});
+
+
+router.get("/comedy", async (req, res) => {
+  const data = await fetchFromTMDB("/discover/movie?with_genres=35");
+  res.json(data.results);
+});
+
+router.get("/horror", async (req, res) => {
+  const data = await fetchFromTMDB("/discover/movie?with_genres=27");
+  res.json(data.results);
+});
+
 
 export default router;
-

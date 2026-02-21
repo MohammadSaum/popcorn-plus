@@ -10,7 +10,7 @@ const Home = () => {
         <>
         <MovieModal movie={selectedMovie} onClose={()=>setSelectedMovie(null)}/>
         
-        <div className='bg-app-bg min-h-screen text-app-text px-6 py-4'>
+        <div className='bg-app-bg min-h-screen text-app-text px-6 py-4 animate-fadeIn'>
             <Hero/>
 
             <MovieRow title='Trending' movies={trendingMovies} onMovieClick={setSelectedMovie}/>

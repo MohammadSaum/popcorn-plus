@@ -1,238 +1,215 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+// Importing modern SVG icons
+import { Check, Plus, Minus, Tv, Laptop, Smartphone, Gamepad2, ChevronRight } from 'lucide-react';
+
+// Keep your logo.
+// IMPORANT: You need to replace these two image files with high-quality alternatives.
 import logo from "../assets/images/logo.png";
-import landing from "../assets/images/landing page image.png";
-import tv from "../assets/images/smart-tv.png";
-import computer from "../assets/images/laptop.png";
-import phone from "../assets/images/mobile.png";
-import gameConsole from "../assets/images/console.png";
-import heroBg from "../assets/images/hero-bg.jpg";
+// SUGGESTION FOR heroBg: A high-res, cinematic wide shot from a major Disney property (e.g., Star Wars landscape, Marvel scene).
+import heroBg from "../assets/images/hero-bg.jpg"; 
+// SUGGESTION FOR landingImage: A clean mockup showing the Disney+ UI on a TV, laptop, and phone.
+import landingImage from "../assets/images/devices.png"; 
 
-
-const landingPage = () => {
+const LandingPage = () => {
     const [activeId, setActiveId] = useState(null);
 
-    const FAQs = [{
-        id:1,
-        question: "What is Disney+?",
-        answer:"Disney+ is a streaming platform"
-    },
-    {
-        id:2,
-        question: "What can I watch on Disney+?",
-        answer: "you can watch Disney+ over various devices like computer, TV, smartphones, gaming consoles."
-    },
-    {
-        id:3,
-        question: "How much does Disney+ cost?",
-        answer: "Nothing for now, LOL."
-    },
-    {
-        id:4,
-        question: "What devices are supported?",
-        answer: "TVs, Laptop, Computer, Phones, Gaming consoles and many more."
-    },
-    {
-        id:5,
-        question:"Is there any commitments when signing up?",
-        answer:"For now, no."
-    }];
-
+    const FAQs = [
+        {
+            id: 1,
+            question: "What is Disney+?",
+            answer: "Disney+ is the streaming home of your favorite stories. With entertainment from Disney, Pixar, Marvel, Star Wars, and National Geographic, there's always something to explore."
+        },
+        {
+            id: 2,
+            question: "What can I watch on Disney+?",
+            answer: "You can watch Disney+ over various devices like computers, TVs, smartphones, and gaming consoles."
+        },
+        {
+            id: 3,
+            question: "How much does Disney+ cost?",
+            answer: "Plans start at a low monthly price. There are no hidden fees or long-term commitments."
+        },
+        {
+            id: 4,
+            question: "What devices are supported?",
+            answer: "TVs, Laptops, Computers, Phones, Gaming consoles, and many more."
+        },
+        {
+            id: 5,
+            question: "Are there any commitments when signing up?",
+            answer: "For now, no. You can cancel anytime."
+        }
+    ];
 
     const expand = (id) => {
         setActiveId(activeId === id ? null : id);
     };
+
     return (
-        <div>
+        // Using the official Disney+ deep background color
+        <div className="bg-[#040714] font-sans text-white selection:bg-blue-600 selection:text-white">
 
-            {/* landing page 1 */}
-
-            <div className='relative min-h-screen flex flex-col w-full overflow-hidden'>
-                
-                <div
-                    className="absolute inset-0 bg-cover bg-no-repeat bg-right"
-                    style={{
-                        backgroundImage: `url(${heroBg})`
-                    }}
+            {/* Hero Section */}
+            <section className='relative min-h-[85vh] flex items-center justify-center overflow-hidden'>
+                {/* Background Image with slow, cinematic zoom effect */}
+                <div 
+                    className='absolute inset-0 bg-cover bg-center scale-105 animate-[pulse_10s_ease-in-out_infinite]' 
+                    style={{backgroundImage: `url(${heroBg})`}}
                 />
 
-                <div className="absolute inset-0 bg-linear-to-r 
-                    from-black/90 via-black/60 to-transparent" />
-
-                <div className='absolute bottom-0 left-0 w-full h-22 bg-linear-to-t from-[#0B1022]/70 to-transparent'/>
-
-
-                <div className='relative z-10 min-h-screen flex flex-col p-5 text-white'>
-                    <div className='w-full flex justify-end px-4'>
-                    <Link to="/login"
-                        className='flex border-[1.5px] rounded-md p-2 cursor-pointer hover:border-[#FFFFFF99] hover:text-[#FFFFFF99] transition duration-150'>LOG IN
-                    </Link>
-                </div>
+                {/* Complex linear overlays for a premium, cinematic fade */}
+                <div className="absolute inset-0 bg-linear-to-r from-[#040714] via-[#040714]/60 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-[#040714] via-transparent to-transparent" />
                 
-                <div className='h-150 w-190 flex flex-col grow justify-center gap-5 mx-5'>
-                    <img className='h-30 w-50' src={logo} alt='Disney-Plus-Logo'></img>
-                    <span className='text-5xl font-bold w-130 text-app-text'>Stories you'd expect + Stories you wouldn't</span>
+                {/* Content */}
+                <div className="relative z-10 text-center px-6 max-w-5xl mx-auto mt-16">
+                    <img src={logo} alt="Disney+" className="mx-auto mb-8 h-24 md:h-32 object-contain drop-shadow-2xl" />
 
-                    <div className='flex gap-5 w-full'>
-                        <div className='flex flex-col h-40 w-90 gap-2 p-2'>
-                        <h2 className='text-4xl flex items-baseline gap-1'>$3.99 
-                            <span className='text-lg flex items-center justify-center text-app-muted h-5 border-l-2 pl-1'> Month</span>
-                        </h2>
-                        <span className='text-app-muted text-lg'>Subscription required.</span>
-                        <Link to="/signup"
-                        className='bg-[#1A86FF] flex p-2 rounded-md justify-center items-center cursor-pointer hover:bg-[#0072C6] active:scale-98 transition duration-150'>SIGN UP NOW</Link>
-                        </div>
+                    <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight leading-none mb-6 drop-shadow-lg">
+                        Endless stories. <br/>
+                        <span className="bg-linear-to-r from-blue-400 via-blue-200 to-white bg-clip-text text-transparent">
+                            One magical place.
+                        </span>
+                    </h1>
 
-                        <div className='flex flex-col h-40 w-90 gap-2 p-2'>
-                        <h2 className='text-4xl flex items-baseline gap-1'>$39.99 
-                            <span className='text-lg flex items-center justify-center text-app-muted h-5 border-l-2 pl-1'>Year</span>
-                        </h2>
-                        <span className='text-app-muted text-lg'>Save over 15%.* Subscription required.</span>
-                        <Link to='/signup' className='bg-[#1A86FF] flex p-2 rounded-md justify-center items-center cursor-pointer hover:bg-[#0072C6] active:scale-98 transition duration-150'>SAVE ON 12 MONTHS</Link>
-                        </div>
-                    </div>
-                    <span className='text-app-muted text-xs p-2 -mt-9'>*Saving compared to 12 months of the mostly subscription price.</span>
+                    <p className="text-xl md:text-2xl text-gray-200 mb-12 font-medium max-w-3xl mx-auto leading-relaxed drop-shadow">
+                        Discover the world's greatest stories, all in one place. From new releases to timeless classics.
+                    </p>
 
-                    
-                </div>
-                </div>
-            </div>
-
-            {/* landing page 2 */}
-
-            <div className='min-h-screen p-15'>
-                <div className='flex gap-10'>
-                    <div className='h-140 w-160'>
-                    <img src={landing} alt='Screen Images'></img>
-                    </div>
-
-                    <div className='pt-13'>
-                        <h2 className='text-5xl font-semibold mb-2 text-app-text'>Watch the way you want</h2>
-                        <div className='px-5 py-4  text-app-muted gap-2 flex flex-col w-130 text-lg'>
-                        <li>
-                            Host virutal movie nights with GroupWatch. Pause, rewind and react with up to six personal friends. To invite or be invited to join GroupWatch, supscription is required
-                        </li>
-                        <li>
-                            Download any movie or series and watch on-the-go
-                        </li>
-                        <li>
-                            Keep your family safe with easy parental controls
-                        </li>
-                        <li>
-                            An ever-growing range of titles in stunning 4K UHD and Dolby Atmos sound on conpatible devices
-                        </li>
-                        <li>
-                            Stream on up to four devices at the same time
-                        </li>
-                        </div>
-                        
+                    <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                        <Link
+                            to="/signup"
+                            // Premium button with linear and glow
+                            className="group relative inline-flex items-center justify-center overflow-hidden rounded-lg bg-linear-to-br from-[#0063e5] to-[#009afa] p-0.5 font-bold text-white shadow-xl shadow-blue-500/30 transition-all duration-300 hover:scale-105 hover:shadow-blue-500/50 focus:outline-none"
+                        >
+                            <span className="relative flex items-center gap-2 rounded-md bg-opacity-0 px-12 py-4 text-xl transition-all duration-300 group-hover:bg-opacity-0">
+                                Get Started
+                                <ChevronRight className="h-6 w-6 transition-transform group-hover:translate-x-1" />
+                            </span>
+                        </Link>
+                        <Link
+                            to="/login"
+                            className="text-gray-300 hover:text-white text-lg font-semibold tracking-wide px-8 py-4 transition-colors duration-300 border-2 border-transparent hover:border-gray-500 rounded-lg"
+                        >
+                            LOG IN
+                        </Link>
                     </div>
                 </div>
-            
-                <div className='w-full mt-3 flex items-center justify-center'>
-                    <Link to="/signup" className='bg-[#1A86FF] w-90 flex p-2 rounded-md justify-center items-center cursor-pointer hover:bg-[#0072C6] active:scale-98 transition duration-150 text-app-text'>SIGN UP NOW</Link>
-                </div>
-            </div>
+            </section>
 
-            {/* landing page 3 */}
-
-            <div className='min-h-screen p-13 flex flex-col'>
-                <div className=' flex w-full justify-around text-5xl font-semibold text-app-text'>Available on your favourite devices</div>
-
-                <div className='flex grow pt-20 px-5 justify-between'>
-                    <div className='flex flex-col gap-3 w-70 items-center'>
-                        <img className='w-45 h-45' src={tv} alt='tv image'></img>
-                        <h2 className='text-2xl font-semibold mb-3 text-app-text'>TV</h2>
-                        <div className='flex flex-col items-center text-md text-app-muted'>
-                            <ul>Amazon Fire TV</ul>
-                            <ul>Android TV Devices</ul>
-                            <ul>Apple TV</ul>
-                            <ul>Chromecast</ul>
-                            <ul>LG TVs</ul>
-                            <ul>Roku</ul>
-                            <ul>Samsung</ul>
-                            <ul>Sky Q</ul>
-                        </div>
+            {/* Features Section - Replaced "the girl one" image */}
+            <section className='py-32 px-6'>
+                <div className='max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center'>
+                    {/* New image container with a subtle glowing backlight */}
+                    <div className="relative group">
+                        <div className="absolute -inset-4 bg-linear-to-r from-blue-600/30 to-purple-600/30 rounded-2xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                        <img 
+                            src={landingImage} 
+                            alt="Disney+ on multiple devices" 
+                            className='relative rounded-xl drop-shadow-2xl w-full object-cover transform transition-transform duration-500 hover:scale-[1.02]'
+                        />
                     </div>
 
-                    <div className='flex flex-col gap-5 w-70 items-center'>
-                        <img className='w-32 h-32 mt-6' src={computer}></img>
-                        <h2 className='text-2xl font-semibold pt-5 text-app-text'>Computer</h2>
-                        <div className='flex flex-col items-center text-app-muted pt-1'>
-                            <ul>Chrome OS</ul>
-                            <ul>MacOS</ul>
-                            <ul>Window PC</ul>
-                        </div>
-                    </div>
+                    <div className="flex flex-col justify-center">
+                        <h2 className='text-4xl md:text-5xl font-bold mb-10 tracking-tight'>Watch the way you want</h2>
 
-                    <div className='flex flex-col gap-3 w-70 items-center'>
-                        <img className='w-30 h-30 mt-6' src={phone}></img>
-                        <h2 className='text-2xl font-semibold mt-9 text-app-text'>Mobile & Tablet</h2>
-                        <div className='flex flex-col items-center text-app-muted pt-3'>
-                            <ul>Amazon Fire Tablets</ul>
-                            <ul>Android Phones & Tablets</ul>
-                            <ul>iPhone & iPad</ul>
-                        </div>
-                    </div>
-
-                    <div className='flex flex-col  gap-3 w-70 items-center'>
-                        <img className='w-25 h-25 mt-9' src={gameConsole}></img>
-                        <h2 className='text-2xl font-semibold mt-11 text-app-text'>Game Consoles</h2>
-                        <div className='flex flex-col items-center text-app-muted mt-3'>
-                            <ul>PS4</ul>
-                            <ul>PS5</ul>
-                            <ul>Xbox One</ul>
-                            <ul>Xbox Series X</ul>
-                            <ul>Xbos Series S</ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {/* landing page 4   */}
-            <div className='min-h-screen flex flex-col px-15 py-3 gap-10'>
-                <div className='w-full text-5xl flex justify-center font-semibold '>Frequently Asked Questions</div>
-                
-                <div className='flex flex-col gap-3'>
-                    {FAQs.map((item) =>{
-                        return (
-                            <div key={item.id} className='flex flex-col'>
-                                <div className='w-full h-15 bg-[#13151D] flex justify-between px-5 items-center text-lg'>
-                                    <span>{item.question}</span>
-                                    <button className='text-4xl cursor-pointer' onClick={()=>expand(item.id)}>{activeId === item.id ? '-' : '+'}</button>
-                                </div>
-
-                                {activeId === item.id && (
-                                    <div className='bg-[#13151D] p-5 border-t border-black text-[#FFFFFF99]'>{item.answer}
+                        <ul className="space-y-6">
+                            {[
+                                "Host virtual movie nights with GroupWatch",
+                                "Download and watch offline on the go",
+                                "Robust parental controls for family safety",
+                                "Stunning 4K UHD & Dolby Atmos sound",
+                                "Stream on up to 4 devices at once"
+                            ].map((feature, idx) => (
+                                <li key={idx} className="flex items-center gap-5 text-xl text-gray-300">
+                                    <div className="shrink-0 p-2 rounded-full bg-blue-600/20 text-blue-400">
+                                        <Check size={24} strokeWidth={3} />
                                     </div>
-                                )}
+                                    <span>{feature}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            {/* Devices Section */}
+            <section className="py-32 bg-linear-to-b from-[#040714] via-[#0c112b] to-[#040714] border-t border-white/5">
+                <div className="max-w-7xl mx-auto px-6">
+                    <h2 className="text-4xl md:text-5xl font-bold text-center mb-20 tracking-tight">
+                        Available on your favorite devices
+                    </h2>
+
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-16 text-center">
+                        {[
+                            { icon: <Tv size={80} strokeWidth={1} />, title: "TV" },
+                            { icon: <Laptop size={80} strokeWidth={1} />, title: "Computer" },
+                            { icon: <Smartphone size={80} strokeWidth={1} />, title: "Mobile & Tablet" },
+                            { icon: <Gamepad2 size={80} strokeWidth={1} />, title: "Consoles" }
+                        ].map((device, i) => (
+                            <div key={i} className="flex flex-col items-center group cursor-default">
+                                <div className="text-gray-500 group-hover:text-blue-400 transition-all duration-500 transform group-hover:-translate-y-4 group-hover:scale-110 drop-shadow-lg">
+                                    {device.icon}
+                                </div>
+                                <h3 className="text-2xl font-semibold text-gray-400 group-hover:text-white transition-colors mt-6">
+                                    {device.title}
+                                </h3>
                             </div>
-                        );
-                    })}
-                </div>
-
-                {/* Footer Section */}
-                <div className='flex flex-col grow mt-25 p-2 '>
-                    <div className='flex w-full h-15 items-center justify-around'><img src={logo} className='h-12 w-20'></img></div>
-
-                    <div className='flex w-full pl-70 h-15 gap-10 items-center text-app-muted text-sm mb-5'>
-                        <ul>Supported Device</ul>
-                        <ul>Help</ul>
-                        <ul>About Us</ul>
-                        <ul>Terms of Use</ul>
-                        <ul>Privacy Policy</ul>
-                        <ul>Cookie Policy</ul>
-                        <ul>FAQ</ul>
-                        <ul>English</ul>
-                    </div>
-
-                    <div className='text-app-muted flex justify-around text-sm'>
-                        © All Rights Reserved. Made by Mohammad Saum!
+                        ))}
                     </div>
                 </div>
-            </div>
+            </section>
+
+           {/* FAQs Section - Redesigned to be fluid and minimal */}
+            <section className='py-32 px-6 max-w-5xl mx-auto'>
+                <h2 className='text-4xl md:text-5xl font-bold text-center mb-20 tracking-tight'>
+                    Frequently Asked Questions
+                </h2>
+                
+                <div className='divide-y divide-white/10 border-t border-b border-white/10'>
+                    {FAQs.map((item) => (
+                        <div key={item.id} className='group'>
+                            <button 
+                                onClick={() => expand(item.id)}
+                                className='w-full flex justify-between items-center py-8 text-left focus:outline-none'
+                            >
+                                <span className={`text-lg font-medium transition-colors duration-300 ${activeId === item.id ? "text-white" : "text-gray-400 group-hover:text-white"}`}>
+                                    {item.question}
+                                </span>
+                                <span className={`transform transition-transform duration-500 ease-in-out ${activeId === item.id ? 'rotate-45 text-white' : 'rotate-0 text-gray-500 group-hover:text-white'}`}>
+                                    {/* Using a single Plus icon that rotates 45deg to become an X looks smoother than switching icons */}
+                                    <Plus size={32} strokeWidth={1.5} />
+                                </span>
+                            </button>
+
+                            {/* Answer with smooth fade-in */}
+                            <div 
+                                className={`grid transition-all duration-500 ease-in-out ${
+                                    activeId === item.id ? 'grid-rows-[1fr] opacity-100 pb-8' : 'grid-rows-[0fr] opacity-0 pb-0'
+                                }`}
+                            >
+                                <div className='overflow-hidden text-base text-gray-400 leading-relaxed max-w-3xl pr-12'>
+                                    {item.answer}
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </section>
+
+            {/* Footer Section */}
+            <footer className="bg-[#040714] border-t border-white/10 py-16 px-6 text-center text-gray-500">
+                <img src={logo} alt="Disney+" className="mx-auto mb-8 h-14 opacity-60 hover:opacity-100 transition-opacity duration-300" />
+                <p className="mb-6 text-sm">© 2026 Disney+ Clone. Built by Mohammad Saum.</p>
+                <div className="flex justify-center gap-8 text-sm font-medium">
+                    <a href="#" className="hover:text-blue-400 transition-colors">Privacy Policy</a>
+                    <a href="#" className="hover:text-blue-400 transition-colors">Terms of Use</a>
+                    <a href="#" className="hover:text-blue-400 transition-colors">Help Center</a>
+                </div>
+            </footer>
         </div>
-    )
+    );
 }
 
-export default landingPage
+export default LandingPage;

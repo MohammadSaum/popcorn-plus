@@ -52,5 +52,11 @@ router.get("/horror", async (req, res) => {
   res.json(data.results);
 });
 
+router.get("/upcoming", async (req, res) => {
+  const data = await fetchFromTMDB("/movie/upcoming");
+  res.json(data.results);
+});
+
+
 
 export default router;

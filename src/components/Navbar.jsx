@@ -35,7 +35,7 @@ const Navbar = ({ isAuthenticated, onLogout }) => {
 
     return (
         // Added dynamic background color and smooth transition
-        <nav className={`fixed top-0 left-0 w-full z-50 transition-colors duration-500 ${isScrolled ? 'bg-[#040714]' : 'bg-transparent'}`}>
+        <nav className={`fixed py-1 top-0 left-0 w-full z-50 transition-colors duration-500 ${isScrolled ? 'bg-[#040714]' : 'bg-transparent'}`}>
             
             {/* Added dynamic opacity to fade out the gradient when the background becomes solid */}
             <div className={`absolute inset-0 h-24 bg-linear-to-b from-black/80 via-black/40 to-transparent pointer-events-none transition-opacity duration-500 ${isScrolled ? 'opacity-0' : 'opacity-100'}`}/>

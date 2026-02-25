@@ -80,7 +80,8 @@ const Home = () => {
       />
 
       <div className="bg-app-bg min-h-screen text-app-text px-6 py-4 animate-fadeIn">
-        <Hero />
+        <Hero movie={trending[Math.floor(Math.random() * trending.length)]} />
+
 
         {loading ? (
           <div className="flex justify-center py-20">
@@ -100,7 +101,7 @@ const Home = () => {
         )}
     </div>
 
-    <footer className="mt-20 py-16 bg-[#040714] border-t border-white/5 text-gray-400 text-sm font-sans">
+    <footer className="mt-5 py-16 bg-[#040714] border-t border-white/5 text-gray-400 text-sm font-sans">
     <div className="max-w-6xl mx-auto px-6">
         
         {/* Top Section: Links Grid */}

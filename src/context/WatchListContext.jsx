@@ -4,17 +4,30 @@ import { apiRequest } from "../utils/api";
 const WatchlistContext = createContext();
 
 export const WatchlistProvider = ({ children }) => {
-    const [watchlist, setWatchlist] = useState(() => {
-        const stored = localStorage.getItem("watchlist");
-        return stored ? JSON.parse(stored) : [];
-    });
+    const [watchlist, setWatchlist] = useState([]);
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState(null)
 
     // persist
     useEffect(() => {
-        apiRequest("/watchlist")
-            .then(setWatchlist)
-            .catch((err) => { console.warn("Failed to load watchlist:", err.message)})
-    }, []);
+            
+    const fetchWatchlist = async () => {
+        try {
+            setLoading(true);
+            setError(null);
+
+            const data = await apiRequest("/watchlist");
+            setWatchlist(data.watchlist || data); 
+        } catch (err) {
+            console.warn("Failed to load watchlist:", err.message);
+            setError(err.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    fetchWatchlist();
+}, []);
 
     const addToWatchlist = async (movie) => {
     const optimisticMovie = {
@@ -67,7 +80,7 @@ export const WatchlistProvider = ({ children }) => {
 
     return (
         <WatchlistContext.Provider
-            value={{ watchlist, addToWatchlist, removeFromWatchlist, isInWatchlist }}
+            value={{ watchlist, addToWatchlist, removeFromWatchlist, isInWatchlist, loading, error }}
         >
             {children}
         </WatchlistContext.Provider>

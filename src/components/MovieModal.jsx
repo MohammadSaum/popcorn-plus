@@ -133,8 +133,8 @@ const MovieModal = ({ movie, onClose }) => {
                 {/* Watchlist */}
                 <button
                     onClick={handleWatchlistToggle}
-                    disanled = {loading}
-                    className={`px-6 py-2.5 rounded-xl font-medium transition-all duration-200 active:scale-95
+                    disabled = {loading}
+                    className={`min-w-[170] min-h-12 px-6 py-2.5 rounded-xl font-medium transition-all duration-200 active:scale-95
                     ${
                         inWatchlist
                         ? "bg-green-600 hover:bg-green-500 text-white shadow-green-500/30 shadow-md"

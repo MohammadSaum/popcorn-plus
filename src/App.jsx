@@ -48,13 +48,13 @@ const App = () => {
                         : <LoginPage setIsAuthenticated={setIsAuthenticated} />
                     } 
             />
-
+{/* redirect authenticated users away form signup */}
             <Route 
                 path ='/signup' 
                     element={
                         isAuthenticated
                         ? <Navigate to='/home' replace/>
-                        :<SignupPage />
+                        :<SignupPage/>
                     } 
             />
 

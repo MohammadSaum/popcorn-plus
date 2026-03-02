@@ -19,58 +19,100 @@ const Home = () => {
 
   const [loading, setLoading] = useState(true)
 
+  const removeDuplicatesAcrossRows = (rows) => {
+  const seen = new Set();
+
+  return rows.map((row) =>
+    row.filter((movie) => {
+      if (seen.has(movie.id)) return false;
+      seen.add(movie.id);
+      return true;
+    })
+  );
+};
+
   useEffect(() => {
-    const fetchMovies = async () => {
-      try {
-        setLoading(true)
+  const fetchMovies = async () => {
+    try {
+      setLoading(true)
 
-        const [
-            trendingData,
-            popularData,
-            upcomingData,
-            topRatedData,
-            actionData,
-            comedyData,
-            horrorData
-            ] = await Promise.all([
-            apiRequest("/movies/trending"),
-            apiRequest("/movies/popular"),
-            apiRequest("/movies/upcoming"),
-            apiRequest("/movies/top-rated"),
-            apiRequest("/movies/action"),
-            apiRequest("/movies/comedy"),
-            apiRequest("/movies/horror"),
-            ])
+      const [
+        trendingData,
+        popularData,
+        upcomingData,
+        topRatedData,
+        actionData,
+        comedyData,
+        horrorData
+      ] = await Promise.all([
+        apiRequest("/movies/trending"),
+        apiRequest("/movies/popular"),
+        apiRequest("/movies/upcoming"),
+        apiRequest("/movies/top-rated"),
+        apiRequest("/movies/action"),
+        apiRequest("/movies/comedy"),
+        apiRequest("/movies/horror"),
+      ])
 
+      const formatMovies = (movies) =>
+        movies.map((movie) => ({
+          id: movie.id,
+          title: movie.title,
+          poster: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+          backdrop: `https://image.tmdb.org/t/p/original${movie.backdrop_path}`,
+          overview: movie.overview,
+        }))
 
-        // Map TMDB fields
-        const formatMovies = (movies) =>
-            movies.map((movie) => ({
-                id: movie.id,
-                title: movie.title,
-                poster: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
-                backdrop: `https://image.tmdb.org/t/p/original${movie.backdrop_path}`,
-                overview: movie.overview,
-            }))
+      // Format first
+      const formattedTrending = formatMovies(trendingData)
+      const formattedPopular = formatMovies(popularData)
+      const formattedUpcoming = formatMovies(upcomingData)
+      const formattedTopRated = formatMovies(topRatedData)
+      const formattedAction = formatMovies(actionData)
+      const formattedComedy = formatMovies(comedyData)
+      const formattedHorror = formatMovies(horrorData)
 
-        setTrending(formatMovies(trendingData))
-        setPopular(formatMovies(popularData))
-        setNewReleases(formatMovies(upcomingData))
-        setTopRated(formatMovies(topRatedData))
-        setAction(formatMovies(actionData))
-        setComedy(formatMovies(comedyData))
-        setHorror(formatMovies(horrorData))
+      // Remove duplicates across ALL rows
+      const [
+        uniqueTrending,
+        uniquePopular,
+        uniqueUpcoming,
+        uniqueTopRated,
+        uniqueAction,
+        uniqueComedy,
+        uniqueHorror
+      ] = removeDuplicatesAcrossRows([
+        formattedTrending,
+        formattedPopular,
+        formattedUpcoming,
+        formattedTopRated,
+        formattedAction,
+        formattedComedy,
+        formattedHorror,
+      ])
 
+      // Set cleaned rows
+      setTrending(uniqueTrending)
+      setPopular(uniquePopular)
+      setNewReleases(uniqueUpcoming)
+      setTopRated(uniqueTopRated)
+      setAction(uniqueAction)
+      setComedy(uniqueComedy)
+      setHorror(uniqueHorror)
 
-      } catch (err) {
-        console.error("Failed to load movies:", err.message)
-      } finally {
-        setLoading(false)
-      }
+    } catch (err) {
+      console.error("Failed to load movies:", err.message)
+    } finally {
+      setLoading(false)
     }
+  }
 
-    fetchMovies()
-  }, [])
+  fetchMovies()
+}, [])
+
+const heroMovie = trending.length
+  ? trending[Math.floor(Math.random() * trending.length)]
+  : null
 
   return (
     <>
@@ -80,7 +122,7 @@ const Home = () => {
       />
 
       <div className="bg-app-bg min-h-screen text-app-text px-6 py-4 animate-fadeIn">
-        <Hero movie={trending[Math.floor(Math.random() * trending.length)]} />
+        <Hero movie={heroMovie} />
 
 
         {loading ? (

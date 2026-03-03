@@ -45,13 +45,13 @@ const Home = () => {
         comedyData,
         horrorData
       ] = await Promise.all([
-        apiRequest("/movies/trending"),
-        apiRequest("/movies/popular"),
-        apiRequest("/movies/upcoming"),
-        apiRequest("/movies/top-rated"),
-        apiRequest("/movies/action"),
-        apiRequest("/movies/comedy"),
-        apiRequest("/movies/horror"),
+        apiRequest("/api/movies/trending"),
+        apiRequest("/api/movies/popular"),
+        apiRequest("/api/movies/upcoming"),
+        apiRequest("/api/movies/top-rated"),
+        apiRequest("/api/movies/action"),
+        apiRequest("/api/movies/comedy"),
+        apiRequest("/api/movies/horror"),
       ])
 
       const formatMovies = (movies) =>

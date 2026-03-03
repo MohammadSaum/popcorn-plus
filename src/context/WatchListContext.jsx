@@ -16,7 +16,7 @@ export const WatchlistProvider = ({ children }) => {
             setLoading(true);
             setError(null);
 
-            const data = await apiRequest("/watchlist");
+            const data = await apiRequest("/api/watchlist");
             setWatchlist(data.watchlist || data); 
         } catch (err) {
             console.warn("Failed to load watchlist:", err.message);
@@ -41,7 +41,7 @@ export const WatchlistProvider = ({ children }) => {
 
     try {
         // 2️⃣ Sync backend
-        await apiRequest("/watchlist", {
+        await apiRequest("/api/watchlist", {
             method: "POST",
             body: JSON.stringify(optimisticMovie)
         });
@@ -64,7 +64,7 @@ export const WatchlistProvider = ({ children }) => {
     );
 
     try {
-        await apiRequest(`/watchlist/${movieId}`, {
+        await apiRequest(`/api/watchlist/${movieId}`, {
             method: "DELETE"
         });
     } catch (error) {

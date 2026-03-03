@@ -34,7 +34,7 @@ const LoginPage = ({setIsAuthenticated}) => {
         try{
             setError("")
 
-            const data = await apiRequest("/auth/login",{
+            const data = await apiRequest("/api/auth/login",{
                 method: "POST",
                 body: JSON.stringify({email,password})
             })

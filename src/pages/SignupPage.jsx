@@ -42,7 +42,7 @@ const SignupPage = () => {
             setLoading(true)
             setError('')
 
-            await apiRequest("/auth/signup", {
+            await apiRequest("/api/auth/signup", {
                 method: "POST",
                 body: JSON.stringify({ name, email, password})
             })

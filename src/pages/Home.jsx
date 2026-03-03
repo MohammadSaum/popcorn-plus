@@ -56,11 +56,14 @@ const Home = () => {
 
       const formatMovies = (movies) =>
         movies.map((movie) => ({
-          id: movie.id,
-          title: movie.title,
-          poster: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
-          backdrop: `https://image.tmdb.org/t/p/original${movie.backdrop_path}`,
-          overview: movie.overview,
+            id: movie.id,
+            title: movie.title,
+            poster: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+            backdrop: `https://image.tmdb.org/t/p/original${movie.backdrop_path}`,
+            overview: movie.overview,
+            rating: movie.vote_average,
+            releaseDate: movie.release_date,
+            genreIds: movie.genre_ids,
         }))
 
       // Format first

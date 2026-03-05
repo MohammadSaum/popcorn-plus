@@ -46,7 +46,12 @@ const SignupPage = () => {
             <div className='relative w-full max-w-md'>
                 
                 {/* Floating Back Button: Adjusted for mobile spacing */}
-                
+                <Link 
+                    to="/" 
+                    className="absolute -top-8 left-0 text-[#6B7391] text-sm hover:text-app-text transition flex items-center gap-1"
+                >
+                    ← Back
+                </Link>
 
                 {/* Form: Swapped fixed width for w-full and added responsive padding */}
                 <form className="bg-app-surface border border-[#0F1530] rounded-xl w-full p-6 md:p-8 shadow-lg"

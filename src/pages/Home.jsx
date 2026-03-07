@@ -4,6 +4,7 @@ import MovieRow from "../components/MovieRow"
 import MovieModal from "../components/MovieModal"
 import { apiRequest } from "../utils/api"
 import {Facebook, Instagram, Youtube} from 'lucide-react'
+import MovieRowSkeleton from "../components/MovieRowSkeleton"
 
 const Home = () => {
     const [selectedMovie, setSelectedMovie] = useState(null)
@@ -129,19 +130,21 @@ const heroMovie = trending.length
 
 
         {loading ? (
-          <div className="flex justify-center py-20">
-            <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
-          </div>
-        ) : (
-          <>
-            <MovieRow title="Trending" movies={trending} onMovieClick={setSelectedMovie} />
-            <MovieRow title="Popular" movies={popular} onMovieClick={setSelectedMovie} />
-            <MovieRow title="New Releases" movies={newReleases} onMovieClick={setSelectedMovie} />
-            <MovieRow title="Top Rated" movies={topRated} onMovieClick={setSelectedMovie} />
-            <MovieRow title="Action Movies" movies={action} onMovieClick={setSelectedMovie} />
-            <MovieRow title="Comedy Movies" movies={comedy} onMovieClick={setSelectedMovie} />
-            <MovieRow title="Horror Movies" movies={horror} onMovieClick={setSelectedMovie} />
-
+            <>
+                <MovieRowSkeleton title="Trending" />
+                <MovieRowSkeleton title="Popular" />
+                <MovieRowSkeleton title="New Releases" />
+                <MovieRowSkeleton title="Top Rated" />
+            </>
+            ) : (
+            <>
+                <MovieRow title="Trending" movies={trending} onMovieClick={setSelectedMovie} />
+                <MovieRow title="Popular" movies={popular} onMovieClick={setSelectedMovie} />
+                <MovieRow title="New Releases" movies={newReleases} onMovieClick={setSelectedMovie} />
+                <MovieRow title="Top Rated" movies={topRated} onMovieClick={setSelectedMovie} />
+                <MovieRow title="Action Movies" movies={action} onMovieClick={setSelectedMovie} />
+                <MovieRow title="Comedy Movies" movies={comedy} onMovieClick={setSelectedMovie} />
+                <MovieRow title="Horror Movies" movies={horror} onMovieClick={setSelectedMovie} />
             </>
         )}
     </div>

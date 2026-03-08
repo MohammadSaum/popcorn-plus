@@ -5,6 +5,7 @@ import MovieModal from "../components/MovieModal"
 import { apiRequest } from "../utils/api"
 import {Facebook, Instagram, Youtube} from 'lucide-react'
 import MovieRowSkeleton from "../components/MovieRowSkeleton"
+import HeroSkeleton from "../components/HeroSkeleton"
 
 const Home = () => {
     const [selectedMovie, setSelectedMovie] = useState(null)
@@ -18,126 +19,130 @@ const Home = () => {
     const [horror, setHorror] = useState([])
 
 
-  const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(true)
 
-  const removeDuplicatesAcrossRows = (rows) => {
-  const seen = new Set();
+    const removeDuplicatesAcrossRows = (rows) => {
+    const seen = new Set();
 
-  return rows.map((row) =>
-    row.filter((movie) => {
-      if (seen.has(movie.id)) return false;
-      seen.add(movie.id);
-      return true;
-    })
-  );
-};
+    return rows.map((row) =>
+        row.filter((movie) => {
+        if (seen.has(movie.id)) return false;
+        seen.add(movie.id);
+        return true;
+        })
+    );
+    };
 
-  useEffect(() => {
-  const fetchMovies = async () => {
-    try {
-      setLoading(true)
+    useEffect(() => {
+    const fetchMovies = async () => {
+        try {
+        setLoading(true)
 
-      const [
-        trendingData,
-        popularData,
-        upcomingData,
-        topRatedData,
-        actionData,
-        comedyData,
-        horrorData
-      ] = await Promise.all([
-        apiRequest("/api/movies/trending"),
-        apiRequest("/api/movies/popular"),
-        apiRequest("/api/movies/upcoming"),
-        apiRequest("/api/movies/top-rated"),
-        apiRequest("/api/movies/action"),
-        apiRequest("/api/movies/comedy"),
-        apiRequest("/api/movies/horror"),
-      ])
+        const [
+            trendingData,
+            popularData,
+            upcomingData,
+            topRatedData,
+            actionData,
+            comedyData,
+            horrorData
+        ] = await Promise.all([
+            apiRequest("/api/movies/trending"),
+            apiRequest("/api/movies/popular"),
+            apiRequest("/api/movies/upcoming"),
+            apiRequest("/api/movies/top-rated"),
+            apiRequest("/api/movies/action"),
+            apiRequest("/api/movies/comedy"),
+            apiRequest("/api/movies/horror"),
+        ])
 
-      const formatMovies = (movies) =>
-        movies.map((movie) => ({
-            id: movie.id,
-            title: movie.title,
-            poster: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
-            backdrop: `https://image.tmdb.org/t/p/original${movie.backdrop_path}`,
-            overview: movie.overview,
-            rating: movie.vote_average,
-            releaseDate: movie.release_date,
-            genreIds: movie.genre_ids,
-        }))
+        const formatMovies = (movies) =>
+            movies.map((movie) => ({
+                id: movie.id,
+                title: movie.title,
+                poster: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+                backdrop: `https://image.tmdb.org/t/p/original${movie.backdrop_path}`,
+                overview: movie.overview,
+                rating: movie.vote_average,
+                releaseDate: movie.release_date,
+                genreIds: movie.genre_ids,
+            }))
 
-      // Format first
-      const formattedTrending = formatMovies(trendingData)
-      const formattedPopular = formatMovies(popularData)
-      const formattedUpcoming = formatMovies(upcomingData)
-      const formattedTopRated = formatMovies(topRatedData)
-      const formattedAction = formatMovies(actionData)
-      const formattedComedy = formatMovies(comedyData)
-      const formattedHorror = formatMovies(horrorData)
+        // Format first
+        const formattedTrending = formatMovies(trendingData)
+        const formattedPopular = formatMovies(popularData)
+        const formattedUpcoming = formatMovies(upcomingData)
+        const formattedTopRated = formatMovies(topRatedData)
+        const formattedAction = formatMovies(actionData)
+        const formattedComedy = formatMovies(comedyData)
+        const formattedHorror = formatMovies(horrorData)
 
-      // Remove duplicates across ALL rows
-      const [
-        uniqueTrending,
-        uniquePopular,
-        uniqueUpcoming,
-        uniqueTopRated,
-        uniqueAction,
-        uniqueComedy,
-        uniqueHorror
-      ] = removeDuplicatesAcrossRows([
-        formattedTrending,
-        formattedPopular,
-        formattedUpcoming,
-        formattedTopRated,
-        formattedAction,
-        formattedComedy,
-        formattedHorror,
-      ])
+        // Remove duplicates across ALL rows
+        const [
+            uniqueTrending,
+            uniquePopular,
+            uniqueUpcoming,
+            uniqueTopRated,
+            uniqueAction,
+            uniqueComedy,
+            uniqueHorror
+        ] = removeDuplicatesAcrossRows([
+            formattedTrending,
+            formattedPopular,
+            formattedUpcoming,
+            formattedTopRated,
+            formattedAction,
+            formattedComedy,
+            formattedHorror,
+        ])
 
-      // Set cleaned rows
-      setTrending(uniqueTrending)
-      setPopular(uniquePopular)
-      setNewReleases(uniqueUpcoming)
-      setTopRated(uniqueTopRated)
-      setAction(uniqueAction)
-      setComedy(uniqueComedy)
-      setHorror(uniqueHorror)
+        // Set cleaned rows
+        setTrending(uniqueTrending)
+        setPopular(uniquePopular)
+        setNewReleases(uniqueUpcoming)
+        setTopRated(uniqueTopRated)
+        setAction(uniqueAction)
+        setComedy(uniqueComedy)
+        setHorror(uniqueHorror)
 
-    } catch (err) {
-      console.error("Failed to load movies:", err.message)
-    } finally {
-      setLoading(false)
+        } catch (err) {
+        console.error("Failed to load movies:", err.message)
+        } finally {
+        setLoading(false)
+        }
     }
-  }
 
-  fetchMovies()
+    fetchMovies()
 }, [])
 
 const heroMovie = trending.length
-  ? trending[Math.floor(Math.random() * trending.length)]
-  : null
+    ? trending[Math.floor(Math.random() * trending.length)]
+    : null
 
-  return (
-    <>
-      <MovieModal
-        movie={selectedMovie}
-        onClose={() => setSelectedMovie(null)}
-      />
-
-      <div className="bg-app-bg min-h-screen text-app-text px-6 py-4 animate-fadeIn">
-        <Hero movie={heroMovie} />
-
+    return (
+        <>
+        <MovieModal
+            movie={selectedMovie}
+            onClose={() => setSelectedMovie(null)}
+        />
 
         {loading ? (
-            <>
+            /* LOADING STATE */
+            <div className="bg-app-bg min-h-screen">
+            <HeroSkeleton />
+            <div className="relative z-10 -mt-24"> {/* Pulls rows up slightly if your Hero has a bottom fade */}
                 <MovieRowSkeleton title="Trending" />
                 <MovieRowSkeleton title="Popular" />
                 <MovieRowSkeleton title="New Releases" />
                 <MovieRowSkeleton title="Top Rated" />
-            </>
-            ) : (
-            <>
+            </div>
+            </div>
+        ) : (
+            /* ACTUAL CONTENT STATE */
+            <div className="bg-app-bg min-h-screen text-app-text animate-fadeIn">
+            <Hero movie={heroMovie} />
+            
+            <div className="relative z-10 -mt-24 pb-10">
                 <MovieRow title="Trending" movies={trending} onMovieClick={setSelectedMovie} />
                 <MovieRow title="Popular" movies={popular} onMovieClick={setSelectedMovie} />
                 <MovieRow title="New Releases" movies={newReleases} onMovieClick={setSelectedMovie} />
@@ -145,9 +150,9 @@ const heroMovie = trending.length
                 <MovieRow title="Action Movies" movies={action} onMovieClick={setSelectedMovie} />
                 <MovieRow title="Comedy Movies" movies={comedy} onMovieClick={setSelectedMovie} />
                 <MovieRow title="Horror Movies" movies={horror} onMovieClick={setSelectedMovie} />
-            </>
+            </div>
+            </div>
         )}
-    </div>
 
     <footer className="mt-5 py-16 bg-[#040714] border-t border-white/5 text-gray-400 text-sm font-sans">
     <div className="max-w-6xl mx-auto px-6">

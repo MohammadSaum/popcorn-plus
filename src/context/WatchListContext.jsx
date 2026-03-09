@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { apiRequest } from "../utils/api";
+import toast from "react-hot-toast";
 
 const WatchlistContext = createContext();
 
@@ -36,39 +37,41 @@ export const WatchlistProvider = ({ children }) => {
         poster: movie.poster
     };
 
-    // 1️⃣ Update UI instantly
+    // 1. Update UI immediately
     setWatchlist(prev => [...prev, optimisticMovie]);
 
-    try {
-        // 2️⃣ Sync backend
-        await apiRequest("/api/watchlist", {
+    // 2. Use toast.promise to track the API request
+    toast.promise(
+        apiRequest("/api/watchlist", {
             method: "POST",
             body: JSON.stringify(optimisticMovie)
-        });
-    } catch (error) {
-        console.warn(error.message);
-
-        // 3️⃣ Rollback if failed
-        setWatchlist(prev =>
-            prev.filter(m => m.movieId !== optimisticMovie.movieId)
-        );
-    }
+        }),
+        {
+            loading: 'Adding to watchlist...',
+            success: 'Added to Watchlist!',
+            error: (err) => {
+                // 3. Rollback UI on failure
+                setWatchlist(prev => prev.filter(m => m.movieId !== optimisticMovie.movieId));
+                return "Failed to add to Watchlist";
+            },
+        }
+    );
 };
 
 
     const removeFromWatchlist = async (movieId) => {
-
-    // Optimistic remove
     setWatchlist(prev =>
         prev.filter(m => m.movieId !== String(movieId))
     );
 
+    toast("Removed from Watchlist");
+
     try {
         await apiRequest(`/api/watchlist/${movieId}`, {
-            method: "DELETE"
+        method: "DELETE"
         });
     } catch (error) {
-        console.warn(error.message);
+        toast.error("Failed to remove movie");
     }
 };
 

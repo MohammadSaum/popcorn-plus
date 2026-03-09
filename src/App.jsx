@@ -6,7 +6,8 @@ import Home from "./pages/Home"
 import { useState } from "react";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Navbar from "./components/Navbar";
-import Watchlist from './pages/Watchlist'
+import Watchlist from './pages/Watchlist';
+import { Toaster } from "react-hot-toast";
 
 const App = () => {
 
@@ -27,6 +28,16 @@ const App = () => {
 
     return (
         <div className="min-h-screen bg-app-bg text-app-text">
+        <Toaster
+            position="top-right"
+            toastOptions={{
+                style: {
+                background: "#0b0f1a",
+                color: "#fff",
+                border: "1px solid #1f2937"
+                }
+            }}
+        />
         {!hideNavbar && (
         <Navbar 
             key={isAuthenticated ? "auth" : "guest"}

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Logo from '../assets/images/logo.png'
 import { Link, useNavigate } from "react-router-dom";
 import { apiRequest } from '../utils/api';
+import toast from 'react-hot-toast';
 
 const SignupPage = () => {
     const [loading, setLoading] = useState(false)
@@ -29,7 +30,7 @@ const SignupPage = () => {
                 method: "POST",
                 body: JSON.stringify({ name, email, password})
             })
-
+            toast.success("Account created");
             navigate("/login")
         } catch (err) {
             setError(err.message || "Signup failed")

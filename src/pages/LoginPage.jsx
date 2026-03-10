@@ -2,6 +2,8 @@ import { useState } from 'react'
 import Logo from '../assets/images/logo.png'
 import { useNavigate, Link } from 'react-router-dom'
 import { apiRequest } from '../utils/api'
+import toast from "react-hot-toast";
+
 
 const LoginPage = ({setIsAuthenticated}) => {
     const [loading, setLoading] = useState(false)
@@ -24,7 +26,7 @@ const LoginPage = ({setIsAuthenticated}) => {
                 method: "POST",
                 body: JSON.stringify({email, password})
             })
-
+            toast.success("Logged in successfully");
             localStorage.setItem("token", data.token)
             setIsAuthenticated(true)
             navigate("/home")

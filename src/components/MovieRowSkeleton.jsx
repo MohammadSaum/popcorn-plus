@@ -10,9 +10,9 @@ const MovieRowSkeleton = () => {
                 {Array.from({ length: 8 }).map((_, i) => (
                     <div 
                         key={i} 
-                        className="flex-none w-[120px] md:w-[160px] lg:w-[190px]"
+                        className="flex-none w-30 md:w-40 lg:w-47.5"
                     >
-                        <div className="aspect-[2/3] w-full rounded-lg bg-gray-800 animate-pulse border-2 border-transparent" />
+                        <div className="aspect-2/3 w-full rounded-lg bg-gray-800 animate-pulse border-2 border-transparent" />
                         
                         <div className="h-3 w-3/4 bg-gray-800 rounded mt-2 mx-auto animate-pulse" />
                     </div>
